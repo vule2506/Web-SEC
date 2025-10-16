@@ -11,14 +11,8 @@
     --border-color: #ddd;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* --- BỐ CỤC CHUNG CỦA TRANG --- */
 body {
-    font-family: 'Lato', sans-serif;
     background-color: var(--light-gray);
 }
 
@@ -30,8 +24,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    /* Canh giữa và tạo khoảng cách với header */
-    margin: 50px auto; 
+    margin: 50px auto;
 }
 
 /* --- CỘT TRÁI: FORM --- */
@@ -66,7 +59,7 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 15px 45px 15px 15px; 
+    padding: 15px 45px 15px 15px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 16px;
@@ -87,6 +80,19 @@ body {
     cursor: pointer;
 }
 
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-options a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
 .btn {
     width: 100%;
     padding: 15px;
@@ -102,14 +108,19 @@ body {
     background-color: var(--yellow-gold);
     color: var(--dark-gray);
 }
-.btn-login:hover { background-color: #fbc02d; }
+
+.btn-login:hover {
+    background-color: #fbc02d;
+}
 
 .btn-register {
     background-color: var(--pink-purple);
     color: var(--white);
 }
-.btn-register:hover { background-color: #d81b60; }
 
+.btn-register:hover {
+    background-color: #d81b60;
+}
 
 .social-login {
     margin-top: 30px;
@@ -120,7 +131,9 @@ body {
     color: var(--text-color);
     position: relative;
 }
-.social-login span::before, .social-login span::after {
+
+.social-login span::before,
+.social-login span::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -128,9 +141,16 @@ body {
     height: 1px;
     background-color: var(--border-color);
 }
-.social-login span::before { right: 100%; margin-right: 15px; }
-.social-login span::after { left: 100%; margin-left: 15px; }
 
+.social-login span::before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.social-login span::after {
+    left: 100%;
+    margin-left: 15px;
+}
 
 .social-icons {
     margin-top: 20px;
@@ -156,7 +176,6 @@ body {
 .google { background-color: #db4437; }
 .zalo { background-color: #0068ff; font-weight: bold; }
 
-
 /* --- CỘT PHẢI: PANEL --- */
 .panel-section {
     flex: 1;
@@ -178,6 +197,7 @@ body {
     border-radius: 50%;
     background: var(--white);
     margin-bottom: 20px;
+    object-fit: cover;
 }
 
 .panel h2 {
@@ -198,12 +218,77 @@ body {
     color: var(--dark-gray);
     border: 2px solid var(--white);
 }
+
 .btn-panel:hover {
     background-color: transparent;
     color: var(--white);
 }
 
-/* --- UTILITY CLASS --- */
+/* --- UTILITY CLASS & MODAL --- */
 .hidden {
     display: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    color: var(--dark-blue-text);
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+    color: var(--text-color);
+}
+
+.modal-content .input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.modal-content .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.form-btn {
+    width: 100%;
+    padding: 12px;
 }

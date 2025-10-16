@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập / Đăng Ký - Hiệu Sách SGU</title>
-    
+    <title>Giỏ Hàng - Hiệu Sách SGU</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/login-style.css">
-
+    <link rel="stylesheet" href="../css/cart-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <script src="../js/main.js" defer></script>
     <script src="../js/login-script.js" defer></script>
+</head>
 </head>
 <body>
     <header class="header">
@@ -82,7 +81,21 @@
                         <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                         <span>Giỏ Hàng</span>
                         <span class="cart-count">0</span>
-                        <div id="cart-dropdown" class="cart-dropdown"></div>
+                        <div id="cart-dropdown" class="cart-dropdown">
+                            <div class="cart-header">
+                                <h3>Giỏ hàng (0)</h3>
+                            </div>
+                            <div class="cart-body">
+                                <p class="cart-empty-message">Giỏ hàng của bạn đang trống.</p>
+                            </div>
+                            <div class="cart-footer">
+                                <div class="cart-total">
+                                    <strong>Tổng cộng:</strong>
+                                    <span id="cart-total-price">0đ</span>
+                                </div>
+                                <a href="html/cart.html" class="btn btn-primary checkout-btn">Xem giỏ hàng</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,87 +108,56 @@
             </div>
         </div>
     </header>
-    <div class="auth-container">
-        <div class="form-section">
-            <div id="login-form-container" class="form-wrapper">
-                <h2>Đăng Nhập</h2>
-                <p>Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</p>
-                <form id="login-form">
-                    <div class="input-group">
-                        <input type="text" placeholder="Nhập tên tài khoản" required>
+<body>
+    <header class="header">
+        </header>
+
+    <main class="cart-page-main">
+        <div class="container">
+            <h2>GIỎ HÀNG (<span id="cart-page-count">0</span> sản phẩm)</h2>
+
+            <div class="cart-layout">
+                <div class="cart-items-list">
+                    <div class="cart-list-header">
+                        <label class="select-all-container">
+                            <input type="checkbox" id="select-all-items">
+                            Chọn tất cả (<span id="cart-total-items">0</span> sản phẩm)
+                        </label>
+                        <span>Số lượng</span>
+                        <span>Thành tiền</span>
                     </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Nhập mật khẩu" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
+                    <div id="cart-item-container" class="cart-item-container">
+                        </div>
+                </div>
+
+                <div class="order-summary">
+                    <div class="summary-section discount-section">
+                        <h4>Khuyến mãi</h4>
+                        <p>Mã Giảm 10K - Toàn Sàn</p>
+                        <small>Đơn hàng từ 130K</small>
+                        <button class="btn-apply-discount">Mua thêm</button>
                     </div>
-                    <div class="form-options">
-                    <label><input type="checkbox"> Ghi nhớ đăng nhập</label>
-                        <a href="#" id="forgot-password-link">Quên mật khẩu?</a>
+                    <div class="summary-section">
+                        <h4>Thành tiền</h4>
+                        <div class="summary-row">
+                            <span>Tạm tính</span>
+                            <span id="summary-subtotal">0 đ</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển</span>
+                            <span id="summary-shipping">0 đ</span>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-login">Đăng Nhập</button>
-                </form>
-                <div class="social-login">
-                    <span>Hoặc đăng nhập qua</span>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon discord"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
-                        <a href="#" class="social-icon zalo">Z</a>
+                    <div class="summary-total">
+                        <span>Tổng Số Tiền (gồm VAT)</span>
+                        <span id="summary-total">0 đ</span>
                     </div>
+                    <button class="btn-checkout">THANH TOÁN</button>
                 </div>
             </div>
-            <div id="register-form-container" class="form-wrapper hidden">
-                <h2>Đăng Ký</h2>
-                <p>Tạo tài khoản mới để bắt đầu khám phá</p>
-                <form id="register-form">
-                    <div class="input-group">
-                        <input type="text" placeholder="Nhập tên tài khoản" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" placeholder="Nhập email của bạn" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="nhập mật khẩu" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Nhập lại mật khẩu" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
-                    </div>
-                    <button type="submit" class="btn btn-register">Đăng Ký</button>
-                </form>
-            </div>
         </div>
+    </main>
 
-        <div class="panel-section">
-            <div id="login-panel" class="panel">
-                <img src="../img/SGU_logo.jpg" alt="Robot Chào Mừng" class="panel-img">
-                <h2>Hiệu Sách SGU xin chào</h2>
-                <p>Chưa có tài khoản? Đăng ký ngay tại đây</p>
-                <button id="to-register-btn" class="btn btn-panel">Đăng Ký</button>
-            </div>
-            <div id="register-panel" class="panel hidden">
-                <img src="../img/SGU_logo.jpg" alt="Robot Chào Mừng" class="panel-img">
-                <h2>Chào mừng bạn mới</h2>
-                <p>Đã có tài khoản? Đăng nhập tại đây</p>
-                <button id="to-login-btn" class="btn btn-panel">Đăng Nhập</button>
-            </div>
-        </div>
-    </div>
-<div id="forgot-password-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Quên Mật Khẩu</h2>
-        <p>Vui lòng nhập email đã đăng ký. Chúng tôi sẽ giúp bạn tìm lại mật khẩu.</p>
-        <form id="forgot-password-form">
-            <div class="input-group">
-                <label for="forgot-email">Email</label>
-                <input type="email" id="forgot-email" placeholder="Nhập email của bạn" required>
-            </div>
-            <button type="submit" class="btn btn-primary form-btn">Gửi</button>
-        </form>
-    </div>
-</div>
-    <script src="../js/login-script.js"></script>
+    <script src="../js/cart-script.js"></script>
 </body>
 </html>
