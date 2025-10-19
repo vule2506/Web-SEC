@@ -1,5 +1,3 @@
-// js/main.js
-
 document.addEventListener('DOMContentLoaded', () => {
     // ======================================================
     // KIỂM TRA VÀ CẬP NHẬT TRẠNG THÁI ĐĂNG NHẬP
