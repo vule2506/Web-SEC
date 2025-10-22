@@ -10,189 +10,85 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <script src="../js/main.js" defer></script>
+    <script src="../js/login-script.js" defer></script>
 </head>
 <body>
+<div id="cart-overlay" class="cart-overlay"></div> 
 <header class="header">
-        <div class="top-bar">
-            <div class="container">
-                <div class="top-links">
-                    <span><i class="fas fa-mobile-alt"></i> Tải App</span>
-                    <span><i class="far fa-bell"></i> Thông Báo</span>
-                </div>
-                <div class="top-promo">
-                    <p>Khuyến mãi hot</p>
-                </div>
-                <div class="top-contact">
-                    <a href="https://lh3.googleusercontent.com/pw/AP1GczM2LM7D7_E5k7W9EnTYTFsOtOezOM5lq6yGqIL80hKlJFfQ8Vhw4jBixQ5nfyqCeQPJOIhd7cGLyWJVDPekSbLxqq_D9wfVr47qbDgfGJ65QcaVyBbkfuIX4t3gAhgi4isLdnVXrt1GOCewMloKX6pH-g=w818-h928-s-no-gm?authuser=0"><i class="fas fa-headset"></i> Hỗ trợ</a></span>
-                </div>
+    <div class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">Hiệu Sách SGU</a>
+            <div class="search-area">
+                <input type="text" placeholder="Tìm kiếm sách...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
             </div>
-        </div>
-
-        <div class="main-header">
-            <div class="container">
-                <a href="../index.html" class="logo">Hiệu Sách SGU</a>
-
-                <div class="category-menu-container">
-                    <button class="category-button">
-                        <i class="fas fa-bars"></i>
-                        Danh mục sản phẩm
-                    </button>
-                    <div class="mega-menu">
-                        <div class="menu-column">
-                            <h3>Sách Trong Nước</h3>
-                            <ul>
-                                <li><a href="#">Văn Học</a></li>
-                                <li><a href="#">Kinh Tế</a></li>
-                                <li><a href="#">Tâm Lý - Kỹ Năng Sống</a></li>
-                                <li><a href="#">Sách Thiếu Nhi</a></li>
-                                <li><a href="#">Tiểu Sử - Hồi Ký</a></li>
-                                <li><a href="#">Giáo Khoa - Tham Khảo</a></li>
-                                <li><a href="#">Xem tất cả</a></li>
-                            </ul>
-                        </div>
-                        <div class="menu-column">
-                            <h3>Foreign Books</h3>
-                            <ul>
-                                <li><a href="#">Fiction</a></li>
-                                <li><a href="#">Business & Economics</a></li>
-                                <li><a href="#">Self-help</a></li>
-                                <li><a href="#">Children's Books</a></li>
-                                <li><a href="#">Xem tất cả</a></li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="header-actions">
+                <div class="action-item"> <i class="far fa-bell"></i>
+                    <span>Thông Báo</span>
                 </div>
-                <div class="search-area">
-                    <input type="text" placeholder="Tìm kiếm sách...">
-                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                <a href="login.html" class="action-item" id="account-link">
+                    <i class="far fa-user"></i>
+                    <span>Tài Khoản</span>
+                </a>
+                <div class="action-item cart-icon open-cart-trigger">
+                    <a href="#" class="open-cart-trigger"><i class="fas fa-shopping-cart"></i></a>
+                    <span>Giỏ Hàng</span>
+                    <span class="cart-count">0</span>
                 </div>
-
-                <div class="header-actions">
-                    <div class="action-item"> <i class="far fa-bell"></i>
-                        <span>Thông Báo</span>
-                    </div>
-                    <a href="login.html" class="action-item" id="account-link">
-                        <i class="far fa-user"></i>
-                        <span>Tài Khoản</span>
-                    </a>
-                    <div class="action-item cart-icon">
-                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-                        <span>Giỏ Hàng</span>
-                        <span class="cart-count">0</span>
-                        <div id="cart-dropdown" class="cart-dropdown"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="promo-banner-large">
-            <div class="container">
-                <a href="https://dom88.com/?a=2090e519567148e009a2257699784ca1&utm_source=animevietsubapp&utm_medium=topbanner1&utm_campaign=cpd&utm_term=phim"><img src="https://lh3.googleusercontent.com/HC8D6LWYZlD-MDiLGpHnFlftC-FpGORnRyDBypOn4u7jW4529_gzQjiHX5A-W71jbLQPuXhuQuFJK0TwtKwh22w72AriDQOtOPNo_Y85rOIimW1hSOQzjJjN9KBaWw=s0" alt="Banner Khuyến Mãi Lớn 1"></a>
-                <a href="https://qc.gemwin.vip/?a=d0436ef1c5635a77a41ee298b42e0fc8&utm_source=animevietsubapp&utm_medium=topbanner3&utm_campaign=cpd&utm_term=phim"><img src="https://lh3.googleusercontent.com/9QDBt00XWQfJ9BSnblbAJ54I2g9gXN4W-o9ceTD3NqqWEPsHgP29Ti1Xi5zwIOr9ROSvkPDykkFzoJEsgF86MHcTzjmTGwupXrhGpp_62crton35rjvc3UhfTnA=s0" alt="Banner Khuyến Mãi Lớn 2"></a>
-            </div>
-        </div>
-    </header>
-
-    <div class="auth-container">
-        <div class="form-section">
-            <div id="login-form-container" class="form-wrapper">
-                <h2>Đăng Nhập</h2>
-                <p>Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</p>
-                <form id="login-form">
-                    <div class="input-group">
-                        <input type="text" placeholder="Nhập tên tài khoản" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Nhập mật khẩu" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
-                    </div>
-                    <div class="form-options">
-                        <label><input type="checkbox"> Ghi nhớ đăng nhập</label>
-                        <a href="#" id="forgot-password-link">Quên mật khẩu?</a>
-                    </div>
-                    <button type="submit" class="btn btn-login">Đăng Nhập</button>
-                </form>
-                <div class="social-login">
-                    <span>Hoặc đăng nhập qua</span>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon discord"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
-                        <a href="#" class="social-icon zalo">Z</a>
-                    </div>
-                </div>
-            </div>
-            <div id="register-form-container" class="form-wrapper hidden">
-                <h2>Đăng Ký</h2>
-                <p>Tạo tài khoản mới để bắt đầu khám phá</p>
-                <form id="register-form">
-                    <div class="input-group">
-                        <input type="text" placeholder="Nhập tên tài khoản" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" placeholder="Nhập email của bạn" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Nhập mật khẩu" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Nhập lại mật khẩu" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
-                    </div>
-                    <button type="submit" class="btn btn-register">Đăng Ký</button>
-                </form>
-            </div>
-        </div>
-        <div class="panel-section">
-            <div id="login-panel" class="panel">
-                <img src="../img/SGU_logo.jpg" alt="Robot Chào Mừng" class="panel-img">
-                <h2>Hiệu Sách SGU xin chào</h2>
-                <p>Chưa có tài khoản? Đăng ký ngay tại đây</p>
-                <button id="to-register-btn" class="btn btn-panel">Đăng Ký</button>
-            </div>
-            <div id="register-panel" class="panel hidden">
-                <img src="../img/SGU_logo.jpg" alt="Robot Chào Mừng" class="panel-img">
-                <h2>Chào mừng bạn mới</h2>
-                <p>Đã có tài khoản? Đăng nhập tại đây</p>
-                <button id="to-login-btn" class="btn btn-panel">Đăng Nhập</button>
             </div>
         </div>
     </div>
+    </header>
+
+    <div class="auth-container">
+        </div>
 
     <div id="forgot-password-modal" class="modal">
         </div>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Hiệu Sách SGU</h3>
-                    <p>Nơi tri thức bắt đầu và lan tỏa. Cảm ơn bạn đã ghé thăm.</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Liên kết nhanh</h3>
-                    <ul>
-                        <li><a href="#">Về chúng tôi</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
-                        <li><a href="#">Điều khoản dịch vụ</a></li>
-                        <li><a href="#">Liên hệ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Theo dõi chúng tôi</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://youtu.be/dQw4w9WgXcQ?si=AWhig_vOAFDfX0P4"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+        </footer>
+
+    <div id="add-to-cart-toast" class="toast-message">
+        <div class="toast-icon-wrapper">
+            <i class="fas fa-check"></i>
+        </div>
+        <p>Sản phẩm đã được thêm vào giỏ hàng.</p>
+    </div>
+
+    <div id="side-cart-container" class="side-cart-container">
+        <div id="cart-view">
+            <div class="side-cart-header">
+                <h3>Giỏ hàng của bạn</h3>
+                <button id="close-cart-btn" class="close-btn">&times;</button>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Hiệu Sách SGU. Đã đăng ký bản quyền. (CÓ MỚI LẠ)</p>
+            <div id="side-cart-body" class="cart-body">
+                <p class="cart-empty-message">Giỏ hàng của bạn đang trống.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Tổng cộng:</strong>
+                    <span id="cart-total-price">0đ</span>
+                </div>
+                <button id="go-to-checkout-btn" class="btn checkout-btn">Thanh toán</button>
             </div>
         </div>
-    </footer>
-    <script src="../js/login-script.js"></script>
-</body>
+        <div id="checkout-view" class="hidden">
+            <div class="side-cart-header">
+                <h3>Thông tin giao hàng</h3>
+                <button id="back-to-cart-btn" class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+            <div class="checkout-form-body">
+                <form id="checkout-form">
+                    </form>
+            </div>
+            <div class="cart-footer">
+                <button type="submit" form="checkout-form" class="btn checkout-btn">ĐẶT HÀNG</button>
+            </div>
+        </div>
+    </div>
+
+    </body>
 </html>

@@ -12,8 +12,11 @@
     
     <script src="js/script.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/database.js" defer></script>
+    <script src="js/product-loader.js" defer></script>
 </head>
 <body>
+    <div id="cart-overlay" class="cart-overlay"></div>
     <header class="header">
         <div class="top-bar">
             <div class="container">
@@ -72,25 +75,12 @@
                         <i class="far fa-user"></i>
                         <span>Tài Khoản</span>
                     </a>
-                    <div class="action-item cart-icon">
-                        <a href="html/cart.html"><i class="fas fa-shopping-cart"></i></a>
+                    <div class="action-item cart-icon open-cart-trigger">
+                        <a href="#" class="open-cart-trigger cart-icon-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
                         <span>Giỏ Hàng</span>
-                        <span class="cart-count">0</span>
-                        <div id="cart-dropdown" class="cart-dropdown">
-                            <div class="cart-header">
-                                <h3>Giỏ hàng (0)</h3>
-                            </div>
-                            <div class="cart-body">
-                                <p class="cart-empty-message">Giỏ hàng của bạn đang trống.</p>
-                            </div>
-                            <div class="cart-footer">
-                                <div class="cart-total">
-                                    <strong>Tổng cộng:</strong>
-                                    <span id="cart-total-price">0đ</span>
-                                </div>
-                                <a href="html/cart.html" class="btn btn-primary checkout-btn">Xem giỏ hàng</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -136,6 +126,7 @@
                 <h2>Sách Nổi Bật Tuần Này</h2>
                 <div class="book-grid">
                     <div class="book-card">
+                    <a href="html/product-detail.html?id=SPALCH">
                         <img src="https://placehold.co/300x450/B2EBF2/000000?text=Bìa+Sách+1" alt="Tên Sách Rất Hay">
                         <h3>Tên Sách Rất Hay</h3>
                         <p class="author">Tác giả A</p>
@@ -144,11 +135,13 @@
                             data-id="SP001" 
                             data-name="Tên Sách Rất Hay" 
                             data-price="120000" 
-                            data-image="https://placehold.co/300x450/B2EBF2/000000?text=Bìa+Sách+1">
+                            data-image="https://placehold.co/80x120/B2EBF2/000000?text=Bìa+Sách+1">
                             Thêm vào giỏ
+                        </a>
                         </a>
                     </div>
                     <div class="book-card">
+                        <a href="html/product-detail.html?id=SPHARRY">
                         <img src="https://placehold.co/300x450/FFCDD2/000000?text=Bìa+Sách+2" alt="Cuốn Sách Về Tương Lai">
                         <h3>Cuốn Sách Về Tương Lai</h3>
                         <p class="author">Tác giả B</p>
@@ -157,8 +150,9 @@
                             data-id="SP002" 
                             data-name="Cuốn Sách Về Tương Lai" 
                             data-price="155000" 
-                            data-image="https://placehold.co/300x450/FFCDD2/000000?text=Bìa+Sách+2">
+                            data-image="https://placehold.co/80x120/FFCDD2/000000?text=Bìa+Sách+2">
                             Thêm vào giỏ
+                        </a>
                         </a>
                     </div>
                     <div class="book-card">
@@ -167,13 +161,13 @@
                         <h3>Hành Trình Khám Phá</h3>
                         <p class="author">Tác giả C</p>
                         <p class="price">99.000đ</p>
-                        </a>
                         <a href="#" class="btn btn-secondary add-to-cart-btn" 
                             data-id="SP003" 
                             data-name="Hành Trình Khám Phá" 
                             data-price="99000" 
-                            data-image="https://placehold.co/300x450/C8E6C9/000000?text=Bìa+Sách+3">
+                            data-image="https://placehold.co/80x120/C8E6C9/000000?text=Bìa+Sách+3">
                             Thêm vào giỏ
+                        </a>
                         </a>
                     </div>
                     <div class="book-card">
@@ -185,14 +179,14 @@
                             data-id="SP004" 
                             data-name="Bí Mật Của Đại Dương" 
                             data-price="180000" 
-                            data-image="https://placehold.co/300x450/FFF9C4/000000?text=Bìa+Sách+4">
+                            data-image="https://placehold.co/80x120/FFF9C4/000000?text=Bìa+Sách+4">
                             Thêm vào giỏ
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        </main>
+    </main>
 
     <footer class="footer">
         <div class="container">
@@ -220,19 +214,80 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Hiệu Sách SGU. Đã đăng ký bản quyền. (CÓ MỚI LẠ)</p>
+                <p>© 2025 Hiệu Sách SGU. Đã đăng ký bản quyền. (CÓ MỚI LẠ)</p>
             </div>
         </div>
     </footer>
-
-    <div id="add-to-cart-toast" class="toast-message">
+<div id="add-to-cart-toast" class="toast-message">
         <div class="toast-icon-wrapper">
             <i class="fas fa-check"></i>
         </div>
         <p>Sản phẩm đã được thêm vào giỏ hàng.</p>
     </div>
 
-    <div class="social-float-group">
+    <div id="side-cart-container" class="side-cart-container">
+        <div id="cart-view">
+            <div class="side-cart-header">
+                <h3>Giỏ hàng của bạn</h3>
+                <button id="close-cart-btn" class="close-btn">&times;</button>
+            </div>
+            <div id="side-cart-body" class="cart-body">
+                <p class="cart-empty-message">Giỏ hàng của bạn đang trống.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Tổng cộng:</strong>
+                    <span id="cart-total-price">0đ</span>
+                </div>
+                <button id="go-to-checkout-btn" class="btn checkout-btn">
+                    Thanh toán
+                </button>
+            </div>
         </div>
-</body> 
+        <div id="checkout-view" class="hidden">
+            <div class="side-cart-header">
+                <h3>Thông tin giao hàng</h3>
+                <button id="back-to-cart-btn" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </button>
+            </div>
+        </div> <div id="checkout-modal" class="checkout-modal-container">
+                <div class="checkout-modal-content">
+                    <div class="checkout-modal-header">
+                        <h3>Thông tin giao hàng</h3>
+                        <button id="close-checkout-modal-btn" class="close-btn">&times;</button>
+                    </div>
+
+                    <div class="checkout-form-body">
+                        <form id="checkout-form">
+                            <div class="form-group-full"><input type="text" placeholder="Họ và tên" required></div>
+                            <div class="checkout-form-grid">
+                                <div class="form-group"><input type="email" placeholder="Email" required></div>
+                                <div class="form-group"><input type="tel" placeholder="Số điện thoại" required></div>
+                            </div>
+                            <div class="form-group-full"><input type="text" placeholder="Địa chỉ" required></div>
+                            <div class="checkout-form-grid">
+                                <div class="form-group"><input type="text" placeholder="Phường/Xã" required></div>
+                                <div class="form-group"><input type="text" placeholder="Quận/Huyện" required></div>
+                            </div>
+                            <div class="form-group-full"><input type="text" placeholder="Tỉnh/Thành phố" required></div>
+                            <h4 class="payment-title">Phương thức thanh toán</h4>
+                            <label class="form-radio">
+                                <input type="radio" name="payment-method" value="cod" checked> Thanh toán khi nhận hàng
+                            </label>
+                            <label class="form-radio">
+                                <input type="radio" name="payment-method" value="bank"> Chuyển khoản ngân hàng
+                            </label>
+                        </form>
+                    </div>
+                    
+                    <div class="cart-footer"> <button type="submit" form="checkout-form" class="btn checkout-btn">
+                            ĐẶT HÀNG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
