@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Hiệu Sách SGU</title>
+        <link rel="icon" type="image/img" href="../img/SGU_logo.jpg">
+        <!-- <link rel="stylesheet" href="../css/admin-style.css"> -->
+        <link rel="stylesheet" href="../themify-icons/themify-icons.css">
+        <style>
+            /* Common CSS */
+
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.red
+{
+    background-color: #f00;
+}
+
+.green
+{
+    background-color: #0f0;
+}
+
+.blue
+{
+    background-color: #007BFF;
+}
+
+.app-container
+{
+    display: flex;
+}
+
+
+/* CSS SideBar */
+
+#sidebar
+{
+    width: 15%;
+    background-color: #E0F7FA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.logo
+{
+    height: 65px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #007BFF;
+    padding: 16px 28px;
+    border-bottom: solid 2px #003B73;
+}
+
+#main-nav
+{
+    flex-grow: 1;
+    padding: 16px;
+}
+
+#sidebar button
+{
+    width: 95%;
+    font-size: 13px;
+    text-align: center;
+    border: solid 2px #000;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    color:#000;
+}
+
+#sidebar a, #main-content-header a
+{
+    text-decoration: none;
+    color: #003B73;
+}
+
+
+#login-function
+{
+    font-size: 16px;
+    text-align: left;
+    padding: 20px;
+    margin-top: auto;
+}
+
+/* CSS Main Content */
+#main-content
+{
+    width: 85%;
+    background-color: #f4f7f6;
+}
+
+#main-content-header
+{
+    height: 65px;
+    color:#003B73;
+    font-size: 24px;
+    font-weight: 900;
+    border-bottom: solid 2px #003B73;
+    line-height: 65px;
+    padding-left: 16px;
+}
+
+#page-dashboard
+{
+    margin-top: 8px;
+}
+
+#page-dashboard .stat-grid
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+}
+
+#page-dashboard .stat-card
+{
+    width: 300px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: solid 10px #007BFF;
+}
+
+
+#page-dashboard h3
+{
+    font-size: 1em;
+    font-weight: 500;
+    color: #007BFF;
+    margin-bottom: 5px;
+}
+
+#page-dashboard p
+{
+    color:#003B73;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.function-area
+{
+    display: none;
+    /* display: block; */
+    padding: 24px 100px;
+}
+
+.function-area .heading-wrap
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.function-area .function-name
+{
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.function-area .wrap
+{
+    margin-top: 10px;
+    padding: 4px;
+    border: solid 1px #000;
+    border-radius: 12px;
+}
+
+
+.function-area .list-heading,
+.function-area .item,
+#form-profit-wrap
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 10px;
+}
+
+.function-area .item p
+{
+    padding: 0 4px;
+    min-width: 0;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Flex Basic Của User */
+
+#user-function .list-heading h4:nth-child(1),
+#user-function .item p:nth-child(1) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#user-function .list-heading h4:nth-child(2),
+#user-function .item p:nth-child(2) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#user-function .list-heading h4:nth-child(3),
+#user-function .item p:nth-child(3) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#user-function .list-heading h4:nth-child(4) {
+    flex-basis: 40%; 
+    justify-content: center;
+    text-align: center;
+}
+
+#user-function .item .btn-list {
+    flex-basis: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex Basic Của Product Category */
+
+#product-category .list-heading h4:nth-child(1),
+#product-category .item p:nth-child(1) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-category .list-heading h4:nth-child(2),
+#product-category .item p:nth-child(2) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-category .list-heading h4:nth-child(3),
+#product-category .item p:nth-child(3) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-category .list-heading h4:nth-child(4) {
+    flex-basis: 40%; 
+    justify-content: center;
+    text-align: center;
+}
+
+#product-category .item .btn-list {
+    flex-basis: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex Basic Của Product Detail */
+
+#product-detail .list-heading h4:nth-child(1),
+#product-detail .item p:nth-child(1) {
+    flex-basis: 10%; 
+    text-align: center;
+}
+
+#product-detail .list-heading h4:nth-child(2),
+#product-detail .item p:nth-child(2) {
+    flex-basis: 15%; 
+    text-align: center;
+}
+
+#product-detail .list-heading h4:nth-child(3),
+#product-detail .item p:nth-child(3) {
+    flex-basis: 25%; 
+    text-align: center;
+}
+
+#product-detail .list-heading h4:nth-child(4),
+#product-detail .item p:nth-child(4) {
+    flex-basis: 40%; 
+    text-align: center;
+}
+
+#product-detail .list-heading h4:nth-child(5) {
+    flex-basis: 30%; 
+    justify-content: center;
+    text-align: center;
+}
+
+#product-detail .item .btn-list {
+    flex-basis: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex Basic Của Product Import */
+
+#product-import .list-heading h4:nth-child(1),
+#product-import .item p:nth-child(1) {
+    flex-basis: 10%; 
+    text-align: center;
+}
+
+#product-import .list-heading h4:nth-child(2),
+#product-import .item p:nth-child(2) {
+    flex-basis: 15%; 
+    text-align: center;
+}
+
+#product-import .list-heading h4:nth-child(3),
+#product-import .item p:nth-child(3) {
+    flex-basis: 15%; 
+    text-align: center;
+}
+
+#product-import .list-heading h4:nth-child(4),
+#product-import .item p:nth-child(4) {
+    flex-basis: 15%; 
+    text-align: center;
+}
+
+#product-import .list-heading h4:nth-child(5),
+#product-import .item p:nth-child(5) {
+    flex-basis: 40%; 
+    text-align: center;
+}
+
+#product-import .list-heading h4:nth-child(6) {
+    flex-basis: 30%; 
+    justify-content: center;
+    text-align: center;
+}
+
+#product-import .item .btn-list {
+    flex-basis: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex Basic Của Product Price */
+
+#product-price .list-heading h4:nth-child(1),
+#product-price .item p:nth-child(1) {
+    flex-basis: 15%; 
+    text-align: center;
+}
+
+#product-price .list-heading h4:nth-child(2),
+#product-price .item p:nth-child(2) {
+    flex-basis: 25%; 
+    text-align: center;
+}
+
+#product-price .list-heading h4:nth-child(3),
+#product-price .item p:nth-child(3) {
+    flex-basis: 25%; 
+    text-align: center;
+}
+
+#product-price .list-heading h4:nth-child(4),
+#product-price .item p:nth-child(4) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-price .list-heading h4:nth-child(5),
+#product-price .item p:nth-child(5) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-price .list-heading h4:nth-child(6),
+#product-price .item p:nth-child(6) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+/* Flex Basic Của Product Order */
+
+#product-order .list-heading h4:nth-child(1),
+#product-order .item p:nth-child(1) {
+    flex-basis: 10%; 
+    text-align: center;
+}
+
+#product-order .list-heading h4:nth-child(2),
+#product-order .item p:nth-child(2) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-order .list-heading h4:nth-child(3),
+#product-order .item p:nth-child(3) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-order .list-heading h4:nth-child(4),
+#product-order .item p:nth-child(4) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-order .list-heading h4:nth-child(5),
+#product-order .item p:nth-child(5) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-order .list-heading h4:nth-child(6) {
+        flex-basis: 40%; 
+    text-align: center;
+}
+
+#product-order .item .btn-list {
+    flex-basis: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex Basic Của Product Manage */
+
+#product-manage .list-heading h4:nth-child(1),
+#product-manage .item p:nth-child(1) {
+    flex-basis: 10%; 
+    text-align: center;
+}
+
+#product-manage .list-heading h4:nth-child(2),
+#product-manage .item p:nth-child(2) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-manage .list-heading h4:nth-child(3),
+#product-manage .item p:nth-child(3) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-manage .list-heading h4:nth-child(4),
+#product-manage .item p:nth-child(4) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-manage .list-heading h4:nth-child(5),
+#product-manage .item p:nth-child(5) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-manage .list-heading h4:nth-child(6),
+#product-manage .item p:nth-child(6) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+#product-manage .list-heading h4:nth-child(7),
+#product-manage .item p:nth-child(7) {
+    flex-basis: 20%; 
+    text-align: center;
+}
+
+.btn,
+.toggle-label
+{
+    padding: 8px 20px; 
+    border: 1px solid #333;
+    border-radius: 12px; 
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0 12px;
+    color: #fff;
+    box-shadow: 6px 0 0#888888;
+    transition: all 0.1s ease-out;
+}
+
+.btn:active,
+.toggle-label:active
+{
+    box-shadow: 0 2px 0 #2980b9;
+    transform: translateY(3px);
+    background-color: #2c3e50;
+}
+
+.add-btn, .search-btn
+{
+    color: #000;
+}
+
+.apply-btn, .img-btn
+{
+    
+}
+
+.reset-btn:hover,
+.lock-btn:hover,
+.adjust-btn:hover,
+.delete-btn:hover,
+.toggle-label
+{
+    cursor: pointer;
+}
+
+/* Form Lợi Nhuận */
+#form-profit-wrap
+{
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.pricing-control-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: auto;
+    margin: 20px;
+}
+
+/* Nhóm Input */
+.input-group {
+    margin-bottom: 15px;
+}
+
+/* Style cho dropdown và input number */
+#target-select, #profit-value {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.toggle-mode {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.toggle-mode p {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.hidden-radio { 
+    position: absolute; 
+    opacity: 0; 
+    pointer-events: none; 
+}
+.toggle-label {
+    /* padding: 6px 12px;
+    color: #007BFF; 
+    background-color: #f0f8ff;
+    border: 1px solid #007BFF;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s; */
+    color: #000;
+}
+
+.hidden-radio:checked + .toggle-label {
+    color: white; 
+    background-color: #007BFF;
+    font-weight: bold;
+}
+
+/* Hết form lợi nhuận */
+
+
+/* Khu vực dropdown list của tra cứu tồn kho sản phẩm */
+
+#inventory-dropdown-list-wrap {
+    margin: 30px 0;
+}
+
+/* Container chính */
+.inventory-lookup-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.lookup-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.lookup-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+/* Làm nổi bật ô Tồn Kho (tùy chọn) */
+#current-stock {
+    background-color: #f0f0f0;
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* Hết khu vực dropdown list của tra cứu tồn kho sản phẩm */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.function-area .warn-low-product
+{
+    border: solid 5px #ff7f00;
+}
+
+.function-area .border-lock
+{
+    border: 5px solid #f00;
+}
+
+.active-function-area
+{
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="app-container">
+
+            <!-- Begin Sidebar -->
+            <aside id="sidebar">
+                <div class="logo">
+                    <i class="ti-panel"></i>
+                    Hiệu Sách SGU
+                </div>
+
+
+
+                <div id="main-nav">
+                    <button class="function-nav-btn btn" data-target="page-dashboard">Tổng Quan</button>
+                    <button class="function-nav-btn btn" data-target="user-function">Quản Lý Người Dùng</button>
+                    <button class="function-nav-btn btn" data-target="product-category">Quản Lý Loại Sản Phẩm</button>
+                    <button class="function-nav-btn btn" data-target="product-detail">Quản Lý Danh Mục Sản Phẩm</button>
+                    <button class="function-nav-btn btn" data-target="product-import">Quản Lý Nhập Sản Phẩm</button>
+                    <button class="function-nav-btn btn" data-target="product-price">Quản Lý Giá Bán</button>
+                    <button class="function-nav-btn btn" data-target="product-order">Quán Lý Đơn Đặt Hàng</button>
+                    <button class="function-nav-btn btn" data-target="product-manage">Quản Lý Số Lượng Tồn Kho</button>
+                </div>
+                
+
+
+                <div id="login-function">
+                    <a href="../html/index.html">Đăng Xuất</a>
+                </div>
+            </aside>
+            <!-- End Sidebar -->
+
+
+
+            <!-- Begin Main Content -->
+            <div id="main-content">
+
+                <header id="main-content-header">
+                    Bảng Chức Năng Chính    
+                </header>
+
+
+                <div id="page-dashboard" class="function-area active-function-area">
+                    
+                    <h1 style="margin-bottom: 20px; text-align: center;">Tổng Quan</h1>
+                    
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <h3><i class="dashboard-heading"></i> Khách Hàng</h3>
+                            <p>120</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3><i class="dashboard-heading"></i> Sản Phẩm</h3>
+                            <p>850</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3><i class="dashboard-heading"></i> Đơn Hàng Mới</h3>
+                            <p>32</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3><i class="dashboard-heading"></i> Sắp Hết Hàng</h3>
+                            <p>15</p>
+                        </div>
+                    </div>
+                    <!-- Thêm biểu đồ hoặc báo cáo nhanh ở đây -->
+                </div>
+
+
+                <div class="function-area " id="user-function">
+
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Quản lý Người dùng</h3>
+                        <button class="btn add-btn">Thêm</button>
+                    </div>
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID</h4>
+                            <h4>Tài Khoản</h4>
+                            <h4>Mật Khẩu</h4>
+                            <h4>Thao Tác</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item" id="1">
+                                <p>1</p>
+                                <p>NhâtAn</p>
+                                <p id="pass-1">12345678</p>
+                                <div class="btn-list">
+                                    <button class="btn reset-btn blue" data-target="pass-1">Reset mật khẩu</button>
+                                    <button class="btn lock-btn red" data-target="1">Khóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="2">
+                                <p>2</p>
+                                <p>Nam</p>
+                                <p id="pass-2">12345678</p>
+                                <div class="btn-list">
+                                    <button class="btn reset-btn blue" data-target="pass-2">Reset mật khẩu</button>
+                                    <button class="btn lock-btn red" data-target="2">Khóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="3">
+                                <p>3</p>
+                                <p>Vu</p>
+                                <p id="pass-3">12345678</p>
+                                <div class="btn-list">
+                                    <button class="btn reset-btn blue" data-target="pass-3">Reset mật khẩu</button>
+                                    <button class="btn lock-btn red" data-target="3">Khóa</button>
+                                </div>
+                            </div>
+                            <!-- Chèn thêm user qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="function-area" id="product-category">
+
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Quản lý Loại Sản phẩm</h3>
+                        <button class="btn add-btn">Thêm Loại</button>
+                    </div>
+                    
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID</h4>
+                            <h4>Tên Loại</h4>
+                            <h4>Mô tả</h4>
+                            <h4>Thao Tác</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item" id="1">
+                                <p>1</p>
+                                <p>Sách Giáo Khoa</p>
+                                <p>Phục vụ mục đích học tập và giải trí sau những giờ chơi điện tử căng thẳng</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="2">
+                                <p>2</p>
+                                <p>Sách Tham Khảo</p>
+                                <p>Phục vụ mục đích tham khảo tài liệu, kiến thức chuyên môn, nghiên cứu sâu</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="3">
+                                <p>3</p>
+                                <p>Sách văn học</p>
+                                <p>Phục vụ mục đích văn chương, có tác dụng tham khảo</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <!-- Chèn thêm product-category qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="function-area" id="product-detail">
+                    
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Danh mục Sản phẩm</h3>
+                        <button class="btn add-btn">Thêm Loại</button>
+                    </div>
+                    
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID</h4>
+                            <h4>Tên Loại</h4>
+                            <h4>Tên</h4>
+                            <h4>Mô tả</h4>
+                            <h4>Thao Tác</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item" id="1">
+                                <p>1</p>
+                                <p>Sách Giáo Khoa</p>
+                                <p>Sách Toán Học Cấp 1</p>
+                                <p>Phục vụ mục đích học tập và giải trí </p>
+                                <div class="btn-list">
+                                    <button class="btn img-btn green">Hiện ảnh</button>
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="2">
+                                <p>2</p>
+                                <p>Sách Tham Khảo</p>
+                                <p>Cách chết nhanh nhất</p>
+                                <p>Phục vụ mục đích tham khảo tài liệu, kiến thức chuyên môn, nghiên cứu sâu</p>
+                                <div class="btn-list">
+                                    <button class="btn img-btn green">Hiện ảnh</button>
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="3">
+                                <p>3</p>
+                                <p>Sách văn học</p>
+                                <p>Dòng chữ tử thần</p>
+                                <p>Phục vụ mục đích văn chương, có tác dụng tham khảo</p>
+                                <div class="btn-list">
+                                    <button class="btn img-btn green">Hiện ảnh</button>
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="4">
+                                <p>4</p>
+                                <p>Sách văn học</p>
+                                <p>Dòng chữ tử thần</p>
+                                <p>Phục vụ mục đích văn chương, có tác dụng tham khảo</p>
+                                <div class="btn-list">
+                                    <button class="btn img-btn green">Hiện ảnh</button>
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <!-- Chèn thêm product-detail qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="function-area" id="product-import">
+                    
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Nhập Sản phẩm</h3>
+                        <div class="btn-list">
+                            <button class="btn add-btn">Thêm</button>
+                            <button class="btn search-btn">Tìm</button>
+                        </div>
+                    </div>
+                    
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID Phiếu</h4>
+                            <h4>Ngày nhập</h4>
+                            <h4>Tổng tiền</h4>
+                            <h4>Trạng thái</h4>
+                            <h4>Ghi chú</h4>
+                            <h4>Thao Tác</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item" id="1">
+                                <p>9087</p>
+                                <p>15/08/2020</p>
+                                <p>1500000</p>
+                                <p>Hoàn thành</p>
+                                <p>Ghi chú gì đó</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="2">
+                                <p>3522</p>
+                                <p>20/10/2025</p>
+                                <p>9000000</p>
+                                <p>Chưa hoàn thành</p>
+                                <p>Thg Nam khong bik ghi </p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="3">
+                                <p>2623</p>
+                                <p>15/05/2000</p>
+                                <p>250000</p>
+                                <p>Đã hoàn thành</p>
+                                <p>Mệt vl</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <!-- Chèn thêm product-import qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="function-area" id="product-price">
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Thiết lập Lợi nhuận</h3>
+                    </div>
+
+                    <div id="form-profit-wrap">
+                        <form id="profit-setting-form">
+                            
+                            <div class="input-group toggle-mode">
+                                <p>Áp dụng cho:</p>
+                                <input type="radio" id="mode-category" name="profit_mode" value="category" checked class="hidden-radio">
+                                <label for="mode-category" class="toggle-label mode-btn">Theo Loại</label>
+                                
+                                <input type="radio" id="mode-product" name="profit_mode" value="product" class="hidden-radio">
+                                <label for="mode-product" class="toggle-label mode-btn">Theo Sản Phẩm</label>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="target-select" id="target-label">Chọn Loại Sản Phẩm:</label>
+                                <select id="target-select" required></select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="profit-value">Tỉ lệ Lợi nhuận (%):</label>
+                                <input type="number" id="profit-value" min="0" max="100" step="0.01" required placeholder="Ví dụ: 25.5">
+                            </div>
+
+                            <button type="submit" class="btn blue apply-btn">Áp Dụng Tỉ Lệ</button>
+                        </form>                        
+                    </div>
+
+
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Tra cứu giá sản phẩm</h3>
+                        <div class="btn-list">
+                                <button class="btn search-btn">Tìm</button>
+                        </div>                        
+                    </div>
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID Sản phẩm</h4>
+                            <h4>Tên Sản phẩm</h4>
+                            <h4>Phân loại</h4>
+                            <h4>Giá vốn</h4>
+                            <h4>% Lợi nhuận</h4>
+                            <h4>Giá bán</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item" id="1">
+                                <p>3</p>
+                                <p>Dòng chữ tử thần</p>
+                                <P>Sách giáo khoa</P>
+                                <p>1500000</p>
+                                <p>20%</p>
+                                <p>180000</p>
+                            </div>
+                            <div class="item" id="2">
+                                <p>3</p>
+                                <p>Dòng chữ tử thần</p>
+                                <P>Sách giáo khoa</P>
+                                <p>1500000</p>
+                                <p>20%</p>
+                                <p>180000</p>
+                            </div>
+                            <div class="item" id="3">
+                                <p>3</p>
+                                <p>Dòng chữ tử thần</p>
+                                <P>Sách giáo khoa</P>
+                                <p>1500000</p>
+                                <p>20%</p>
+                                <p>180000</p>
+                            </div>
+                            <!-- Chèn thêm product-price qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="function-area" id="product-order">
+                    
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Quản lý Đơn hàng</h3>
+                        <button class="btn search-btn">Tra cứu</button>
+                    </div>
+                    
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID Đơn</h4>
+                            <h4>Khách Hàng</h4>
+                            <h4>Ngày đặt</h4>
+                            <h4>Tổng tiền</h4>
+                            <h4>Trạng thái</h4>
+                            <h4>Thao Tác</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item" id="1">
+                                <p>1</p>
+                                <p>Nam</p>
+                                <p>15/09/2020</p>
+                                <p>1500000</p>
+                                <p>Hoàn thành</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="2">
+                                <p>1</p>
+                                <p>Nam</p>
+                                <p>15/09/2020</p>
+                                <p>1500000</p>
+                                <p>Hoàn thành</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="3">
+                                <p>1</p>
+                                <p>Nam</p>
+                                <p>15/09/2020</p>
+                                <p>1500000</p>
+                                <p>Hoàn thành</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <div class="item" id="4">
+                                <p>1</p>
+                                <p>Nam</p>
+                                <p>15/09/2020</p>
+                                <p>1500000</p>
+                                <p>Hoàn thành</p>
+                                <div class="btn-list">
+                                    <button class="btn adjust-btn blue" data-target="pass-1">Sửa</button>
+                                    <button class="btn delete-btn red" data-target="1">Xóa</button>
+                                </div>
+                            </div>
+                            <!-- Chèn thêm product-order qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="function-area" id="product-manage">
+
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Chi tiết hàng tồn</h3>
+                    </div>
+
+                    <div id="inventory-dropdown-list-wrap">
+                        <div class="inventory-lookup-card">
+                            <div class="lookup-group">
+                                <label for="product-select">Chọn Sản Phẩm</label>
+                                <select id="product-select" class="form-control"></select>
+                            </div>
+                            
+                            <div class="lookup-group">
+                                <label for="current-stock">Tồn Kho Hiện Tại</label>
+                                <input type="text" id="current-stock" class="form-control" readonly value="0">
+                            </div>
+                        </div>                        
+                    </div>
+
+
+
+                    <div class="heading-wrap">
+                        <h3 class="function-name">Quản lý Số lượng hàng tồn</h3>
+                        <button class="btn search-btn">Tra cứu</button>
+                    </div>
+
+
+                    <div class="wrap">
+
+
+                        <div class="list-heading">
+                            <h4>ID</h4>
+                            <h4>Tên sản phẩm</h4>
+                            <h4>Số lượng nhập</h4>
+                            <h4>Số lượng xuất</h4>
+                            <h4>Số lượng tồn</h4>
+                            <h4>Ngày đặt</h4>
+                            <h4>Ngày xuất</h4>
+                        </div>
+
+                        <div class="list-items">
+                            <div class="item warn-low-product" id="1">
+                                <p>1</p>
+                                <p>Chắc chắn là thằng nam</p>
+                                <p>300</p>
+                                <p>250</p>
+                                <p>5</p>
+                                <p>15/9/2023</p>
+                                <p>08/12/2026</p>
+                            </div>
+                            <div class="item" id="2">
+                                <p>1</p>
+                                <p>Chắc chắn là thằng nam</p>
+                                <p>300</p>
+                                <p>250</p>
+                                <p>50</p>
+                                <p>15/9/2023</p>
+                                <p>08/12/2026</p>
+                            </div>
+                            <div class="item warn-low-product" id="3">
+                                <p>1</p>
+                                <p>Chắc chắn là thằng nam</p>
+                                <p>300</p>
+                                <p>250</p>
+                                <p>5</p>
+                                <p>15/9/2023</p>
+                                <p>08/12/2026</p>
+                            </div>
+                            <div class="item" id="4">
+                                <p>1</p>
+                                <p>Chắc chắn là thằng nam</p>
+                                <p>300</p>
+                                <p>250</p>
+                                <p>50</p>
+                                <p>15/9/2023</p>
+                                <p>08/12/2026</p>
+                            </div>
+                            <!-- Chèn thêm product-order qua js ở đây -->
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+
+            </div>
+             <!-- End Main Content -->
+
+
+
+        </div>
+
+        <!-- <script src="../js/admin-main.js"></script> -->
+         <script>
+            function renderMainContent() {
+    var nav_btns = document.querySelectorAll('.function-nav-btn')
+    nav_btns.forEach((nav_btn) => {
+    nav_btn.onclick = function() {
+        var curActive = document.querySelector('.function-area.active-function-area')
+        if (curActive) curActive.classList.remove('active-function-area')
+        var targetID = this.getAttribute('data-target');
+        var newActiveArea = document.getElementById(targetID);
+
+        if(newActiveArea) {
+            newActiveArea.classList.add('active-function-area');
+        }
+    }
+})
+}
+
+function resetPassWord() {
+    var resetpass_btns = document.querySelectorAll('.reset-btn')
+    resetpass_btns.forEach(function (resetpass_btn) {
+        resetpass_btn.onclick = function () {
+            var password = document.getElementById(this.getAttribute('data-target'));
+            if (password) {
+                password.innerText = '0'; //Sửa
+            }
+        }
+    })
+}
+
+function accountLockAndUnlock() {
+    var lock_btns = document.querySelectorAll('.lock-btn')
+    lock_btns.forEach(function(lock_btn) {
+        lock_btn.onclick = function() {
+            var user = document.getElementById(lock_btn.getAttribute('data-target'));
+            var curText = this.innerText;
+            if (curText === 'Khóa') {
+                user.classList.add('border-lock');
+                this.innerText = 'Mở khóa';
+                this.classList.remove('red');
+                this.classList.add('green');
+                this.style.color = '#000'
+            }
+            else if (curText === 'Mở khóa') {
+                user.classList.remove('border-lock');
+                this.innerText = 'Khóa';
+                this.classList.add('red');
+                this.classList.remove('green');
+                this.style.color = '#fff'
+            }
+        }
+    })
+}
+
+function start() {
+    renderMainContent();
+    resetPassWord();
+    accountLockAndUnlock();
+}
+
+start();
+
+
+         </script>
+    </body>
+</html>

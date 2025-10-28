@@ -10,10 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-    <script src="js/script.js" defer></script>
-    <script src="js/main.js" defer></script>
     <script src="js/database.js" defer></script>
-    <script src="js/product-loader.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/product-loader.js" defer></script> 
+
+    <style>
+    a {
+      text-decoration: none;
+    }
+    </style>
+    
 </head>
 <body>
     <div id="cart-overlay" class="cart-overlay"></div>
@@ -37,34 +44,13 @@
         <div class="main-header">
             <div class="container">
                 <a href="index.html" class="logo">Hiệu Sách SGU</a>
-
-                <div class="category-menu-container">
-                    <button class="category-button">
-                        <i class="fas fa-bars"></i>
-                        Danh mục sản phẩm
-                    </button>
-                    <div class="mega-menu">
-                        <div class="menu-column">
-                            <h3>Sách Trong Nước</h3>
-                            <ul>
-                                <li><a href="#">Văn Học</a></li>
-                                <li><a href="#">Kinh Tế</a></li>
-                                <li><a href="#">Tâm Lý - Kỹ Năng Sống</a></li>
-                            </ul>
-                        </div>
-                        <div class="menu-column">
-                            <h3>Foreign Books</h3>
-                            <ul>
-                                <li><a href="#">Fiction</a></li>
-                                <li><a href="#">Business & Economics</a></li>
-                                <li><a href="#">Self-help</a></li>
-                            </ul>
-                        </div>
+                <div class="search-wrapper">
+                    <div class="search-area">
+                        <input type="text" placeholder="Tìm kiếm sách..." id="search-input">
+                        <button class="search-btn" id="search-button"><i class="fas fa-search"></i></button>
                     </div>
-                </div>
-                <div class="search-area">
-                    <input type="text" placeholder="Tìm kiếm sách...">
-                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <div class="search-suggestions" id="search-suggestions">
+                    </div>
                 </div>
 
                 <div class="header-actions">
@@ -120,70 +106,54 @@
         </div>
     </section>
 
+    <section class="category-bar-section">
+        <div class="container">
+            <div class="category-bar-grid">
+                
+                <a href="#" class="category-bar-item" data-category="all">
+                    <div class="category-bar-icon bg-blue">
+                        <i class="fas fa-border-all"></i>
+                    </div>
+                    <span class="category-name">Tất Cả</span>
+                </a>
+
+                <a href="#" class="category-bar-item" data-category="kinhte">
+                    <div class="category-bar-icon bg-green">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span class="category-name">Kinh Tế</span>
+                </a>
+
+                <a href="#" class="category-bar-item" data-category="kynangsong">
+                    <div class="category-bar-icon bg-orange">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <span class="category-name">Kỹ Năng Sống</span>
+                </a>
+
+                <a href="#" class="category-bar-item" data-category="fiction">
+                    <div class="category-bar-icon bg-red">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <span class="category-name">Fiction</span>
+                </a>
+
+                <a href="#" class="category-bar-item" data-category="vanhoc">
+                    <div class="category-bar-icon bg-purple">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <span class="category-name">Văn Học</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
     <main>
         <section class="featured-books">
             <div class="container">
-                <h2>Sách Nổi Bật Tuần Này</h2>
-                <div class="book-grid">
-                    <div class="book-card">
-                    <a href="html/product-detail.html?id=SPALCH">
-                        <img src="https://placehold.co/300x450/B2EBF2/000000?text=Bìa+Sách+1" alt="Tên Sách Rất Hay">
-                        <h3>Tên Sách Rất Hay</h3>
-                        <p class="author">Tác giả A</p>
-                        <p class="price">120.000đ</p>
-                        <a href="#" class="btn btn-secondary add-to-cart-btn" 
-                            data-id="SP001" 
-                            data-name="Tên Sách Rất Hay" 
-                            data-price="120000" 
-                            data-image="https://placehold.co/80x120/B2EBF2/000000?text=Bìa+Sách+1">
-                            Thêm vào giỏ
-                        </a>
-                        </a>
+                <h2 id="featured-books-title">Sách Nổi Bật Tuần Này</h2>              
+                <div class="book-grid" id="main-book-grid">
                     </div>
-                    <div class="book-card">
-                        <a href="html/product-detail.html?id=SPHARRY">
-                        <img src="https://placehold.co/300x450/FFCDD2/000000?text=Bìa+Sách+2" alt="Cuốn Sách Về Tương Lai">
-                        <h3>Cuốn Sách Về Tương Lai</h3>
-                        <p class="author">Tác giả B</p>
-                        <p class="price">155.000đ</p>
-                        <a href="#" class="btn btn-secondary add-to-cart-btn" 
-                            data-id="SP002" 
-                            data-name="Cuốn Sách Về Tương Lai" 
-                            data-price="155000" 
-                            data-image="https://placehold.co/80x120/FFCDD2/000000?text=Bìa+Sách+2">
-                            Thêm vào giỏ
-                        </a>
-                        </a>
-                    </div>
-                    <div class="book-card">
-                        <a href="html/product-detail.html">
-                        <img src="https://placehold.co/300x450/C8E6C9/000000?text=Bìa+Sách+3" alt="Hành Trình Khám Phá">
-                        <h3>Hành Trình Khám Phá</h3>
-                        <p class="author">Tác giả C</p>
-                        <p class="price">99.000đ</p>
-                        <a href="#" class="btn btn-secondary add-to-cart-btn" 
-                            data-id="SP003" 
-                            data-name="Hành Trình Khám Phá" 
-                            data-price="99000" 
-                            data-image="https://placehold.co/80x120/C8E6C9/000000?text=Bìa+Sách+3">
-                            Thêm vào giỏ
-                        </a>
-                        </a>
-                    </div>
-                    <div class="book-card">
-                        <img src="https://placehold.co/300x450/FFF9C4/000000?text=Bìa+Sách+4" alt="Bí Mật Của Đại Dương">
-                        <h3>Bí Mật Của Đại Dương</h3>
-                        <p class="author">Tác giả D</p>
-                        <p class="price">180.000đ</p>
-                        <a href="#" class="btn btn-secondary add-to-cart-btn" 
-                            data-id="SP004" 
-                            data-name="Bí Mật Của Đại Dương" 
-                            data-price="180000" 
-                            data-image="https://placehold.co/80x120/FFF9C4/000000?text=Bìa+Sách+4">
-                            Thêm vào giỏ
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -218,7 +188,8 @@
             </div>
         </div>
     </footer>
-<div id="add-to-cart-toast" class="toast-message">
+
+    <div id="add-to-cart-toast" class="toast-message">
         <div class="toast-icon-wrapper">
             <i class="fas fa-check"></i>
         </div>
@@ -229,7 +200,7 @@
         <div id="cart-view">
             <div class="side-cart-header">
                 <h3>Giỏ hàng của bạn</h3>
-                <button id="close-cart-btn" class="close-btn">&times;</button>
+                <button id="close-cart-btn" class="close-btn">×</button>
             </div>
             <div id="side-cart-body" class="cart-body">
                 <p class="cart-empty-message">Giỏ hàng của bạn đang trống.</p>
@@ -245,46 +216,62 @@
             </div>
         </div>
         <div id="checkout-view" class="hidden">
-            <div class="side-cart-header">
-                <h3>Thông tin giao hàng</h3>
-                <button id="back-to-cart-btn" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> Quay lại
-                </button>
-            </div>
-        </div> <div id="checkout-modal" class="checkout-modal-container">
-                <div class="checkout-modal-content">
-                    <div class="checkout-modal-header">
-                        <h3>Thông tin giao hàng</h3>
-                        <button id="close-checkout-modal-btn" class="close-btn">&times;</button>
-                    </div>
+             </div> 
+        <div id="checkout-modal" class="checkout-modal-container">
+            <div class="checkout-modal-content">
+                <div class="checkout-modal-header">
+                    <h3 id="checkout-modal-title">Thông tin giao hàng</h3>
+                    <button id="close-checkout-modal-btn" class="close-btn">×</button>
+                </div>
 
-                    <div class="checkout-form-body">
-                        <form id="checkout-form">
-                            <div class="form-group-full"><input type="text" placeholder="Họ và tên" required></div>
-                            <div class="checkout-form-grid">
-                                <div class="form-group"><input type="email" placeholder="Email" required></div>
-                                <div class="form-group"><input type="tel" placeholder="Số điện thoại" required></div>
+                <div class="checkout-form-body">
+                    <form id="checkout-form">
+                        <div class="form-group-full"><input type="text" name="ho_ten" placeholder="Họ và tên" required></div>
+                        <div class="checkout-form-grid">
+                            <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
+                            <div class="form-group"><input type="tel" name="so_dien_thoai" placeholder="Số điện thoại" required></div>
+                        </div>
+                        <div class="form-group-full"><input type="text" name="dia_chi" placeholder="Địa chỉ" required></div>
+                        <div class="checkout-form-grid">
+                            <div class="form-group"><input type="text" placeholder="Phường/Xã" required></div>
+                            <div class="form-group"><input type="text" placeholder="Quận/Huyện" required></div>
+                        </div>
+                        <div class="form-group-full"><input type="text" placeholder="Tỉnh/Thành phố" required></div>
+                        <h4 class="payment-title">Phương thức thanh toán</h4>
+                        <label class="form-radio">
+                            <input type="radio" name="payment-method" value="cod" checked> Thanh toán khi nhận hàng
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="payment-method" value="bank"> Chuyển khoản ngân hàng
+                        </label>
+                    </form>
+                        <div id="checkout-review-view" class="hidden">
+                            <div class="review-section">
+                                <strong>Thông tin giao hàng:</strong>
+                                <div id="review-shipping-info">
+                                    </div>
                             </div>
-                            <div class="form-group-full"><input type="text" placeholder="Địa chỉ" required></div>
-                            <div class="checkout-form-grid">
-                                <div class="form-group"><input type="text" placeholder="Phường/Xã" required></div>
-                                <div class="form-group"><input type="text" placeholder="Quận/Huyện" required></div>
+                            <div class="review-section">
+                                <strong>Chi tiết đơn hàng:</strong>
+                                <div id="review-item-list" class="cart-body">
+                                    </div>
                             </div>
-                            <div class="form-group-full"><input type="text" placeholder="Tỉnh/Thành phố" required></div>
-                            <h4 class="payment-title">Phương thức thanh toán</h4>
-                            <label class="form-radio">
-                                <input type="radio" name="payment-method" value="cod" checked> Thanh toán khi nhận hàng
-                            </label>
-                            <label class="form-radio">
-                                <input type="radio" name="payment-method" value="bank"> Chuyển khoản ngân hàng
-                            </label>
-                        </form>
-                    </div>
-                    
-                    <div class="cart-footer"> <button type="submit" form="checkout-form" class="btn checkout-btn">
-                            ĐẶT HÀNG
-                        </button>
-                    </div>
+                            <div id="review-total" class="cart-total">
+                                </div>
+                        </div>
+                </div>
+                
+                <div class="cart-footer">
+                    <button type="submit" form="checkout-form" id="go-to-review-btn" class="btn checkout-btn">
+                        Xem Lại Đơn Hàng
+                    </button>
+
+                    <button id="back-to-form-btn" class="btn btn-secondary hidden">
+                        Quay Lại
+                    </button>
+                    <button id="confirm-order-btn" class="btn checkout-btn hidden">
+                        Xác Nhận Đặt Hàng
+                    </button>
                 </div>
             </div>
         </div>

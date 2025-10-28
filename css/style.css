@@ -499,7 +499,7 @@ body {
 }
 
 .modal-content {
-    background-color: var(--white);
+    background-color: var(--gray);
     margin: auto;
     padding: 40px;
     border-radius: 10px;
@@ -1347,4 +1347,208 @@ body {
 /* Dùng lại .cart-footer đã có */
 .checkout-modal-content .cart-footer {
     flex-shrink: 0;
+}
+/* --- CSS CHO GỢI Ý TÌM KIẾM (MỚI) --- */
+
+/* Wrapper cho tìm kiếm để định vị hộp gợi ý */
+.search-wrapper {
+    position: relative;
+    flex-grow: 1; /* Cho phép nó co giãn như .search-area cũ */
+    max-width: 600px; /* Giữ giới hạn độ rộng */
+}
+
+/* Hộp chứa các gợi ý, ẩn mặc định */
+.search-suggestions {
+    display: none; /* Ẩn đi */
+    position: absolute;
+    top: 100%; /* Ngay bên dưới .search-area (chính xác là dưới .search-wrapper) */
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    border: 1px solid var(--border-light);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    max-height: 300px; /* Giới hạn chiều cao, cho phép cuộn */
+    overflow-y: auto;
+}
+
+/* Từng mục gợi ý */
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-size: 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: var(--light-blue-bg);
+}
+
+.suggestion-item img {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.suggestion-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion-item-info .title {
+    font-weight: 700;
+    /* Ngăn tiêu đề quá dài */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggestion-item-info .price {
+    font-size: 14px;
+    color: var(--accent-color);
+}
+/* --- HẾT CSS GỢI Ý TÌM KIẾM --- */
+/* --- THANH DANH MỤC ICON NGANG (MỚI) --- */
+.category-bar-section {
+    padding: 25px 0;
+}
+
+.category-bar-grid {
+    display: flex;
+    justify-content: space-around; /* Căn đều các mục */
+    align-items: flex-start;
+    gap: 15px;
+    overflow-x: auto; /* Cho phép cuộn ngang trên mobile */
+    padding-bottom: 10px; /* Thêm khoảng đệm để thanh cuộn không quá sát */
+    background-color: var(--gray);
+    border-radius: 15px;           /* Đây là bo góc bạn muốn */
+    padding: 15px;                 /* Thêm padding cho đẹp */
+}
+
+.category-bar-item {
+    display: flex;
+    flex-direction: column; /* Xếp icon trên, chữ dưới */
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0; /* Ngăn các mục bị co lại */
+    width: 90px; /* Đặt chiều rộng cố định cho mỗi mục */
+    text-align: center;
+}
+
+.category-bar-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px; /* Bo góc giống ảnh mẫu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-bar-item:hover .category-bar-icon {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.category-bar-icon i {
+    font-size: 24px;
+    color: var(--white);
+}
+
+.category-name {
+    font-size: 14px;
+    color: var(--dark-gray);
+    font-weight: 700;
+    /* Ngăn chữ bị vỡ thành nhiều dòng không mong muốn */
+    height: 40px; 
+}
+
+/* Các màu nền cho icon (Bạn có thể thêm/thay đổi) */
+.bg-blue { background-color: #007BFF; }
+.bg-green { background-color: #28a745; }
+.bg-orange { background-color: #fd7e14; }
+.bg-red { background-color: #dc3545; }
+.bg-purple { background-color: #6f42c1; }
+/* --- HẾT CSS DANH MỤC --- */
+/* --- CSS CHO XEM LẠI ĐƠN HÀNG (MỚI) --- */
+
+/* Ẩn các phần tử */
+.hidden {
+    display: none !important;
+}
+
+/* Nút Quay Lại */
+.btn-secondary {
+    background-color: #6c757d; /* Màu xám */
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Chia 2 cột cho các nút ở footer */
+.checkout-modal-content .cart-footer {
+    display: flex;
+    gap: 10px;
+}
+.checkout-modal-content .cart-footer .btn {
+    flex: 1; /* Chia đều 2 nút */
+}
+
+/* Kiểu cho màn hình xem lại */
+.review-section {
+    margin-bottom: 20px;
+}
+.review-section strong {
+    font-size: 16px;
+    color: var(--dark-blue-text);
+    margin-bottom: 10px;
+    display: block;
+}
+
+#review-shipping-info {
+    font-size: 15px;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+/* Tận dụng lại style .cart-body cho danh sách review */
+#review-item-list {
+    max-height: 150px;
+    padding: 0;
+}
+#review-item-list .cart-item {
+    padding: 10px 0;
+}
+/* Màu riêng cho nút "Thêm vào giỏ" */
+.add-to-cart-btn {
+    background-color: #007bff; /* Ví dụ: màu xanh dương */
+    color: white;
+    border: none; /* Đảm bảo không có viền thừa */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+    width: 100%; /* Đảm bảo nó rộng bằng thẻ cha */
+    text-align: center; /* Căn giữa chữ */
+    display: block; /* Để padding và width hoạt động */
+}
+
+.add-to-cart-btn:hover {
+    background-color: #0056b3; /* Màu xanh đậm hơn khi hover */
 }

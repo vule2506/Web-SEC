@@ -91,9 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeCheckoutModal = () => {
         if (checkoutModal) checkoutModal.classList.remove('is-open');
-        // Chỉ đóng overlay nếu side cart cũng đang đóng
         if (!sideCart || !sideCart.classList.contains('is-open')) {
             if (overlay) overlay.classList.remove('is-open');
+        }
+
+        // DÁN THÊM 3 DÒNG NÀY ĐỂ RESET MODAL
+        if (formView && reviewView && checkoutModalTitle) {
+            formView.classList.remove('hidden');
+            reviewView.classList.add('hidden');
+            goToReviewBtn.classList.remove('hidden');
+            backToFormBtn.classList.add('hidden');
+            confirmOrderBtn.classList.add('hidden');
+            checkoutModalTitle.textContent = 'Thông tin giao hàng';
         }
     };
 
@@ -147,7 +156,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addProductToCart = (product, quantity) => {
-        // ... (Mã addProductToCart y như cũ) ...
+        
+        // ======================================================
+        // KIỂM TRA ĐĂNG NHẬP (MỚI)
+        // ======================================================
+        // 1. Lấy thông tin người dùng từ sessionStorage
+        const loggedInUser = sessionStorage.getItem('loggedInUser');
+
+        // 2. Kiểm tra xem người dùng có tồn tại không
+        if (!loggedInUser) {
+            // Nếu không, thông báo và chuyển hướng
+            alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.');
+            
+            // Đoạn mã này kiểm tra xem bạn đang ở trang chủ hay trang con
+            // để điều hướng đến 'login.html' một cách chính xác
+            if (window.location.pathname.includes('/html/')) {
+                // Nếu đang ở (ví dụ: /html/product-detail.html)
+                window.location.href = 'login.html';
+            } else {
+                // Nếu đang ở trang chủ (ví dụ: /index.html)
+                window.location.href = 'html/login.html';
+            }
+            
+            return; // Dừng hàm tại đây, không thêm gì vào giỏ
+        }
+
+        // ======================================================
+        // LOGIC THÊM VÀO GIỎ (CŨ)
+        // ======================================================
+        // Nếu đã đăng nhập, đoạn mã cũ sẽ chạy bình thường
         const existingItem = cart.find(item => item.id === product.id);
         
         if (existingItem) {
@@ -215,22 +252,115 @@ document.addEventListener('DOMContentLoaded', () => {
             closeCheckoutModal();
         });
     }
+// === DÁN TOÀN BỘ LOGIC THANH TOÁN MỚI VÀO ĐÂY ===
 
-    // Xử lý đặt hàng (từ Modal)
-    if (checkoutForm) {
-        checkoutForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Đặt hàng thành công! Cảm ơn bạn đã mua hàng.');
-            
-            cart = []; 
-            localStorage.removeItem('cart'); 
-            
-            renderCartPanel(); 
-            closeCheckoutModal(); // Đóng modal
-            checkoutForm.reset(); 
-        });
-    }
+// Lấy các phần tử mới của Modal
+const checkoutModalTitle = document.getElementById('checkout-modal-title');
+const formView = document.getElementById('checkout-form');
+const reviewView = document.getElementById('checkout-review-view');
 
+// Lấy các nút điều khiển mới
+const goToReviewBtn = document.getElementById('go-to-review-btn');
+const backToFormBtn = document.getElementById('back-to-form-btn');
+const confirmOrderBtn = document.getElementById('confirm-order-btn');
+
+// Lấy các vùng hiển thị thông tin review
+const reviewShippingInfo = document.getElementById('review-shipping-info');
+const reviewItemList = document.getElementById('review-item-list');
+const reviewTotal = document.getElementById('review-total');
+
+// --- BƯỚC 1: Bấm nút "Xem Lại Đơn Hàng" ---
+if (checkoutForm) {
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Ngăn form gửi đi
+
+        // Lấy dữ liệu từ form (chỉ lấy các trường đã điền)
+        const formData = new FormData(checkoutForm);
+        const name = formData.get('ho_ten') || 'Chưa nhập';
+        const email = formData.get('email') || 'Chưa nhập';
+        const phone = formData.get('so_dien_thoai') || 'Chưa nhập';
+        const address = formData.get('dia_chi') || 'Chưa nhập';
+
+        // 1. Điền thông tin giao hàng
+        reviewShippingInfo.innerHTML = `
+            Họ tên: <strong>${name}</strong><br>
+            Số điện thoại: <strong>${phone}</strong><br>
+            Địa chỉ: <strong>${address}</strong>
+        `;
+
+        // 2. Điền danh sách sản phẩm (tận dụng cart)
+        reviewItemList.innerHTML = ''; // Xóa cũ
+        if (cart.length === 0) {
+            reviewItemList.innerHTML = '<p>Không có sản phẩm.</p>';
+        } else {
+            cart.forEach(item => {
+                const itemHTML = `
+                    <div class="cart-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div>
+                                <h4>${item.name}</h4>
+                                <p class="cart-item-price">${new Intl.NumberFormat('vi-VN').format(item.price)}đ</p>
+                                <p class="cart-item-quantity">x ${item.quantity}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                reviewItemList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+
+        // 3. Điền tổng tiền
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        reviewTotal.innerHTML = `
+            <strong>Tổng cộng:</strong>
+            <span>${new Intl.NumberFormat('vi-VN').format(totalPrice)}đ</span>
+        `;
+
+        // 4. Chuyển đổi màn hình
+        formView.classList.add('hidden');
+        reviewView.classList.remove('hidden');
+        goToReviewBtn.classList.add('hidden');
+        backToFormBtn.classList.remove('hidden');
+        confirmOrderBtn.classList.remove('hidden');
+        if (checkoutModalTitle) checkoutModalTitle.textContent = 'Xác nhận đơn hàng';
+    });
+}
+
+// --- BƯỚC 2: Bấm nút "Quay Lại" ---
+if (backToFormBtn) {
+    backToFormBtn.addEventListener('click', () => {
+        // Chuyển đổi màn hình
+        formView.classList.remove('hidden');
+        reviewView.classList.add('hidden');
+        goToReviewBtn.classList.remove('hidden');
+        backToFormBtn.classList.add('hidden');
+        confirmOrderBtn.classList.add('hidden');
+        if (checkoutModalTitle) checkoutModalTitle.textContent = 'Thông tin giao hàng';
+    });
+}
+
+// --- BƯỚC 3: Bấm nút "Xác Nhận Đặt Hàng" (Logic submit cuối cùng) ---
+if (confirmOrderBtn) {
+    confirmOrderBtn.addEventListener('click', () => {
+        // Đây là lúc thực sự đặt hàng
+        alert('Đặt hàng thành công! Cảm ơn bạn đã mua hàng.');
+
+        cart = []; // Xóa giỏ hàng
+        localStorage.removeItem('cart'); 
+
+        renderCartPanel(); // Cập nhật lại giỏ hàng (sẽ rỗng)
+        closeCheckoutModal(); // Đóng modal
+        checkoutForm.reset(); // Xóa các trường đã điền
+    });
+}
+
+// --- Cập nhật hàm ĐÓNG MODAL ---
+// Tìm hàm closeCheckoutModal và thêm logic reset
+
+// (Hàm này đã có, bạn chỉ cần dán thêm 3 dòng vào bên trong nó)
+
+
+// === KẾT THÚC LOGIC MỚI ===
     // Khởi tạo giỏ hàng khi tải trang
     renderCartPanel();
 });
