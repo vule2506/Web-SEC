@@ -1,4 +1,4 @@
-/* NỘI DUNG CHO Web-SEC/js/script.js */
+/* NỘI DUNG MỚI CHO Web-SEC/js/script.js */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -75,29 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. LOGIC LỌC, RENDER SẢN PHẨM VÀ PHÂN TRANG (ĐÃ CẬP NHẬT)
     // ======================================================
     
-    // --- Biến toàn cục cho phân trang ---
-    let allProductsList = []; // Chứa TẤT CẢ sản phẩm từ database
-    let currentFilteredProducts = []; // Chứa sản phẩm SAU KHI lọc/tìm kiếm
+    let allProductsList = []; 
+    let currentFilteredProducts = []; 
     let currentPage = 1;
-    const itemsPerPage = 20; // Số sách tối đa mỗi trang
-    const formatter = new Intl.NumberFormat('vi-VN'); // Định dạng tiền tệ
+    const itemsPerPage = 20; 
+    const formatter = new Intl.NumberFormat('vi-VN'); 
 
-    // --- DOM Elements ---
     const bookGrid = document.getElementById('main-book-grid');
     const categoryLinks = document.querySelectorAll('.category-bar-item[data-category]');
     const featuredTitle = document.getElementById('featured-books-title');
     const paginationContainer = document.getElementById('pagination-container');
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    const searchSuggestions = document.getElementById('search-suggestions');
+    const searchInput = document.getElementById('search-input'); // Vẫn cần
+    const searchButton = document.getElementById('search-button'); // Vẫn cần
 
     /**
-     * Hàm "vẽ" 20 cuốn sách ra grid (Tên cũ: renderProducts)
+     * Hàm "vẽ" 20 cuốn sách ra grid (Đã sửa lỗi ảnh từ lần trước)
      */
     function renderProductGrid(productsToDisplay) {
         if (!bookGrid) return;
         
-        bookGrid.innerHTML = ''; // Xóa sạch sách cũ
+        bookGrid.innerHTML = ''; 
         
         if (productsToDisplay.length === 0) {
             bookGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Không tìm thấy sản phẩm nào phù hợp.</p>';
@@ -105,12 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         productsToDisplay.forEach(product => {
-            const thumbImageSrc = product.thumbnails[0].replace('../', 'img/book');
+            const mainImageSrc = product.mainImage.replace('../', '');
 
             const productHTML = `
                 <div class="book-card">
                     <a href="html/product-detail.html?id=${product.id}" class="book-card-image-link">
-                        <img src="${product.mainImage}" alt="${product.title}">
+                        <img src="${mainImageSrc}" alt="${product.title}">
                     </a>
                     
                     <div class="book-card-details">
@@ -124,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             data-id="${product.id}" 
                             data-name="${product.title}" 
                             data-price="${product.currentPrice}" 
-                            data-image="${thumbImageSrc}">
+                            data-image="${mainImageSrc}">
                             Thêm vào giỏ
                         </a>
                     </div>
@@ -135,31 +132,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * [MỚI] Hàm hiển thị một trang cụ thể
+     * Hàm hiển thị một trang cụ thể (Không đổi)
      */
     function displayPage(page) {
         if (typeof productDatabase === 'undefined' || !bookGrid) return;
         
         currentPage = page;
-
-        // Tính toán sản phẩm cho trang hiện tại
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        
-        // Cắt mảng sản phẩm đã lọc
         const productsForThisPage = currentFilteredProducts.slice(startIndex, endIndex);
         
-        renderProductGrid(productsForThisPage); // Vẽ lại lưới sách
-        setupPagination(); // Vẽ lại các nút phân trang
+        renderProductGrid(productsForThisPage);
+        setupPagination(); 
         
-        // Cuộn lên đầu lưới sản phẩm
         if (featuredTitle) {
              featuredTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
     /**
-     * [MỚI] Hàm tạo nút phân trang
+     * Hàm tạo nút phân trang (Không đổi)
      */
     function createPaginationButton(page, text, isDisabled = false, isActive = false) {
         const button = document.createElement('button');
@@ -178,23 +170,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * [MỚI] Hàm "vẽ" các nút phân trang
+     * Hàm "vẽ" các nút phân trang (Không đổi)
      */
     function setupPagination() {
         if (!paginationContainer) return;
         
-        paginationContainer.innerHTML = ''; // Xóa các nút cũ
+        paginationContainer.innerHTML = ''; 
         const pageCount = Math.ceil(currentFilteredProducts.length / itemsPerPage);
 
-        // Không hiển thị thanh phân trang nếu chỉ có 1 trang
         if (pageCount <= 1) return;
 
-        // Nút "Prev"
         paginationContainer.appendChild(
             createPaginationButton(currentPage - 1, '«', (currentPage === 1))
         );
 
-        // Hiển thị nút trang (Logic hiển thị dấu ... )
         const maxButtonsToShow = 5;
         let startPage = Math.max(1, currentPage - Math.floor(maxButtonsToShow / 2));
         let endPage = Math.min(pageCount, startPage + maxButtonsToShow - 1);
@@ -203,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             startPage = Math.max(1, endPage - maxButtonsToShow + 1);
         }
 
-        // Nút '1' và '...' ở đầu
         if (startPage > 1) {
             paginationContainer.appendChild(createPaginationButton(1, '1'));
             if (startPage > 2) {
@@ -214,14 +202,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Các nút số ở giữa
         for (let i = startPage; i <= endPage; i++) {
             paginationContainer.appendChild(
                 createPaginationButton(i, i.toString(), false, i === currentPage)
             );
         }
 
-        // Nút '...' và nút cuối
         if (endPage < pageCount) {
             if (endPage < pageCount - 1) {
                 const ellipsis = document.createElement('span');
@@ -232,14 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
             paginationContainer.appendChild(createPaginationButton(pageCount, pageCount.toString()));
         }
 
-        // Nút "Next"
         paginationContainer.appendChild(
             createPaginationButton(currentPage + 1, '»', (currentPage === pageCount))
         );
     }
 
     /**
-     * [CẬP NHẬT] Hàm lọc sản phẩm theo thể loại
+     * Hàm lọc sản phẩm theo thể loại (Không đổi)
      */
     function filterProducts(category, categoryName) {
         if (typeof productDatabase === 'undefined') return; 
@@ -252,10 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (featuredTitle) featuredTitle.textContent = categoryName;
         }
         
-        displayPage(1); // Luôn hiển thị trang 1 sau khi lọc
+        displayPage(1); 
     }
 
-    // Gắn sự kiện click cho các link thể loại
     categoryLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault(); 
@@ -266,11 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ======================================================
-    // 4. LOGIC TÌM KIẾM SÁCH (Cập nhật)
+    // 4. LOGIC TÌM KIẾM TRANG CHỦ (ĐÃ DỌN DẸP)
     // ======================================================
 
     /**
-     * [CẬP NHẬT] Hàm lọc và CẬP NHẬT GRID CHÍNH
+     * Hàm này chỉ chạy ở index.html để LỌC GRID
+     * (main.js sẽ xử lý chuyển hướng)
      */
     function performSearch() {
         if (typeof productDatabase === 'undefined') return;
@@ -290,88 +275,52 @@ document.addEventListener('DOMContentLoaded', () => {
         
         displayPage(1); // Hiển thị trang 1 của kết quả
         
+        // Ẩn gợi ý (hàm này của main.js, nhưng gọi ở đây cũng được)
+        const searchSuggestions = document.getElementById('search-suggestions');
         if (searchSuggestions) searchSuggestions.style.display = 'none';
     }
     
-    /**
-     * Hàm HIỂN THỊ HỘP GỢI Ý (Không đổi)
-     */
-    function showSuggestions() {
-        if (!searchSuggestions || typeof productDatabase === 'undefined') return;
-
-        const query = searchInput.value.toLowerCase().trim();
-
-        if (query === '') {
-            searchSuggestions.innerHTML = '';
-            searchSuggestions.style.display = 'none';
-            return;
-        }
-
-        const allProducts = Object.values(productDatabase);
-        const suggestions = allProducts.filter(product => {
-            return product.title.toLowerCase().includes(query);
-        }).slice(0, 5); // Lấy 5 gợi ý
-
-        searchSuggestions.innerHTML = ''; 
-
-        if (suggestions.length > 0) {
-            suggestions.forEach(product => {
-                const thumbImageSrc = product.thumbnails[0].replace('../', 'img/'); // Sửa đường dẫn ảnh
-                const suggestionHTML = `
-                    <a href="html/product-detail.html?id=${product.id}" class="suggestion-item">
-                        <img src="${thumbImageSrc}" alt="${product.title}">
-                        <div class="suggestion-item-info">
-                            <span class="title">${product.title}</span>
-                            <span class="price">${formatter.format(product.currentPrice)}đ</span>
-                        </div>
-                    </a>
-                `;
-                searchSuggestions.insertAdjacentHTML('beforeend', suggestionHTML);
-            });
-            searchSuggestions.style.display = 'block';
-        } else {
-            searchSuggestions.innerHTML = '<div style="padding: 10px 15px; color: #888;">Không tìm thấy sản phẩm...</div>';
-            searchSuggestions.style.display = 'block';
-        }
-    }
-
-    // Gắn sự kiện tìm kiếm
+    // Gắn sự kiện TÌM KIẾM CỤC BỘ (chỉ cho index.html)
+    // Nó sẽ ghi đè sự kiện 'redirectToSearch' trong main.js,
+    // và đó CHÍNH LÀ điều chúng ta muốn.
     if (searchButton) {
         searchButton.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            performSearch();
+            e.preventDefault(); // Ngăn main.js chuyển hướng
+            e.stopPropagation(); // Ngăn main.js chạy
+            performSearch(); // Chạy hàm lọc grid
         });
     }
     
     if (searchInput) {
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); 
-                performSearch();
+                e.preventDefault(); // Ngăn main.js chuyển hướng
+                e.stopPropagation(); // Ngăn main.js chạy
+                performSearch(); // Chạy hàm lọc grid
             }
         });
-        searchInput.addEventListener('input', showSuggestions);
+        // Không cần addEventListener 'input' ở đây, main.js đã làm
     }
 
-    // Ẩn gợi ý khi click ra ngoài
-    document.addEventListener('click', (e) => {
-        if (!searchSuggestions || !searchInput) return;
-        if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-            searchSuggestions.style.display = 'none';
-        }
-    });
-
     // ======================================================
-    // 5. KHỞI TẠO TRANG (MỚI)
+    // 5. KHỞI TẠO TRANG (ĐÃ CẬP NHẬT)
     // ======================================================
     function initializeStore() {
         if (typeof productDatabase !== 'undefined' && bookGrid) {
-            // Lấy tất cả sản phẩm từ database
-            allProductsList = Object.values(productDatabase);
-            // Ban đầu, danh sách lọc chính là danh sách đầy đủ
+            allProductsList = Object.values(productDatabase); 
             currentFilteredProducts = allProductsList; 
-            // Hiển thị trang đầu tiên
-            displayPage(1); 
+            
+            // [MỚI] KIỂM TRA TÌM KIẾM TỪ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            
+            if (searchQuery) {
+                searchInput.value = searchQuery; // Điền vào ô tìm kiếm
+                performSearch(); // Lọc ngay lập tức
+            } else {
+                displayPage(1); // Tải trang 1 bình thường
+            }
+            
         } else {
             if (bookGrid) {
                 bookGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Lỗi: Không tải được dữ liệu sản phẩm.</p>';
