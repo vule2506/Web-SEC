@@ -638,5 +638,308 @@ const productDatabase = {
             <p>Sách có nhiều hình ảnh minh họa, đa số được chụp trong những hành trình theo chân Bác trong thời gian gần đây và mười bản đồ vạch rõ lộ trình của Bác.</p>
         `
     },
+
+    "21": {
+        id: "21",
+        title: "Iruma Giá Đáo! - Tập 32",
+        supplier: "Nhà Xuất Bản Kim Đồng",
+        category: "Manga - Comic",
+        author: "Osamu Nishi",
+        publisher: "Kim Đồng",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 25000,
+        oldPrice: 25000,
+        discount: 0,
+        mainImage: "../img/book/21.jpg",
+        thumbnails: [
+            "../img/book/21.jpg",
+            "../img/book/21-s.jpg",
+        ],
+        sku: "9786042283342",
+        releaseDate: "Ngày mai e nhá",
+        year: 2025,
+        pages: 192,
+        description: `
+        <h1>Iruma Giá Đáo! - Tập 32</h1>
+        <p>Thầy Opera nhậm chức giáo viên mới của trường Babyls!?</p>
+        <p>Lớp cá biệt đã trải qua kiếp nạn tại kì thi “Tan Nát Cõi Lòng”. Bài học mà thầy Opera mới nhậm chức giáo viên của trường Babyls dạy cho cả lớp là...!?</p>
+        `
+    },
+
+    
+    "22": {
+        id: "22",
+        title: "Thiên Hà Cạnh Bên - Tập 1",
+        supplier: "NXB Trẻ",
+        category: "Manga - Comic",
+        author: "Gido Amagakure",
+        publisher: "Trẻ",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 45000,
+        oldPrice: 50000,
+        discount: 10,
+        mainImage: "../img/book/22.jpg",
+        thumbnails: [
+            "../img/book/22.jpg",
+            "../img/book/22-s.jpg",
+        ],
+        sku: "8934974203841",
+        releaseDate: "2024-08-03",
+        year: 2024,
+        pages: 192,
+        description: `
+            <h1>Thiên Hà Cạnh Bên - Tập 1</h1>
+            <p>Sau cái chết của cha mình, Kuga Ichirou, một hoạ sĩ truyện tranh thiếu nữ mới ra trường, phải một mình chăm sóc hai đứa em nhỏ của mình, Machi và Fumio. Gặp khó khăn trong việc chạy deadline khi các trợ lý trước của anh ra mắt manga, anh ấy đã thuê một trợ lý mới thông qua biên tập viên của mình. Tuy nhiên, cuộc đời của anh có một bước ngoặt lớn sau khi găp người trợ lý xinh đẹp và bí ẩn này.</p>
+        `
+    },
+
+    
+    "23": {
+        id: "23",
+        title: "Thiên Hà Cạnh Bên - Tập 2",
+        supplier: "NXB Trẻ",
+        category: "Manga - Comic",
+        author: "Gido Amagakure",
+        publisher: "Trẻ",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 45000,
+        oldPrice: 50000,
+        discount: 10,
+        mainImage: "../img/book/23.jpg",
+        thumbnails: [
+            "../img/book/23.jpg",
+            "../img/book/23-s.jpg",
+        ],
+        sku: "8934974204206",
+        releaseDate: "2024-10-03",
+        year: 2024,
+        pages: 192,
+        description: `
+            <h1>Thiên Hà Cạnh Bên - Tập 2</h1>
+            <p>Sau cái chết của cha mình, Kuga Ichirou, một hoạ sĩ truyện tranh thiếu nữ mới ra trường, phải một mình chăm sóc hai đứa em nhỏ của mình, Machi và Fumio. Gặp khó khăn trong việc chạy deadline khi các trợ lý trước của anh ra mắt manga, anh ấy đã thuê một trợ lý mới thông qua biên tập viên của mình. Tuy nhiên, cuộc đời của anh có một bước ngoặt lớn sau khi găp người trợ lý xinh đẹp và bí ẩn này.</p>
+        `
+    },
+
+    "24": {
+        id: "24",
+        title: "Thiên Hà Cạnh Bên - Tập 3",
+        supplier: "NXB Trẻ",
+        category: "Manga - Comic",
+        author: "Gido Amagakure",
+        publisher: "Trẻ",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 45000,
+        oldPrice: 50000,
+        discount: 10,
+        mainImage: "../img/book/24.jpg",
+        thumbnails: [
+            "../img/book/24.jpg",
+            "../img/book/24-s.jpg",
+        ],
+        sku: "8934974204534",
+        releaseDate: "2024-11-03",
+        year: 2024,
+        pages: 192,
+        description: `
+            <h1>Thiên Hà Cạnh Bên - Tập 3</h1>
+            <p>Sau cái chết của cha mình, Kuga Ichirou, một hoạ sĩ truyện tranh thiếu nữ mới ra trường, phải một mình chăm sóc hai đứa em nhỏ của mình, Machi và Fumio. Gặp khó khăn trong việc chạy deadline khi các trợ lý trước của anh ra mắt manga, anh ấy đã thuê một trợ lý mới thông qua biên tập viên của mình. Tuy nhiên, cuộc đời của anh có một bước ngoặt lớn sau khi găp người trợ lý xinh đẹp và bí ẩn này.</p>
+        `
+    },
+
+    "25": {
+        id: "25",
+        title: "Thiên Hà Cạnh Bên - Tập 4",
+        supplier: "NXB Trẻ",
+        category: "Manga - Comic",
+        author: "Gido Amagakure",
+        publisher: "Trẻ",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 45000,
+        oldPrice: 50000,
+        discount: 10,
+        mainImage: "../img/book/25.jpg",
+        thumbnails: [
+            "../img/book/25.jpg",
+            "../img/book/25-s.jpg",
+        ],
+        sku: "8934974204824",
+        releaseDate: "2024-11-03",
+        year: 2024,
+        pages: 192,
+        description: `
+            <h1>Thiên Hà Cạnh Bên - Tập 4</h1>
+            <p>Sau cái chết của cha mình, Kuga Ichirou, một hoạ sĩ truyện tranh thiếu nữ mới ra trường, phải một mình chăm sóc hai đứa em nhỏ của mình, Machi và Fumio. Gặp khó khăn trong việc chạy deadline khi các trợ lý trước của anh ra mắt manga, anh ấy đã thuê một trợ lý mới thông qua biên tập viên của mình. Tuy nhiên, cuộc đời của anh có một bước ngoặt lớn sau khi găp người trợ lý xinh đẹp và bí ẩn này.</p>
+        `
+    },
+
+    "26": {
+        id: "26",
+        title: "Thiên Hà Cạnh Bên - Tập 5",
+        supplier: "NXB Trẻ",
+        category: "Manga - Comic",
+        author: "Gido Amagakure",
+        publisher: "Trẻ",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 45000,
+        oldPrice: 50000,
+        discount: 10,
+        mainImage: "../img/book/26.jpg",
+        thumbnails: [
+            "../img/book/26.jpg",
+            "../img/book/26-s.jpg",
+        ],
+        sku: "8934974205197",
+        releaseDate: "2024-12-03",
+        year: 2024,
+        pages: 192,
+        description: `
+            <h1>Thiên Hà Cạnh Bên - Tập 5</h1>
+            <p>Sau cái chết của cha mình, Kuga Ichirou, một hoạ sĩ truyện tranh thiếu nữ mới ra trường, phải một mình chăm sóc hai đứa em nhỏ của mình, Machi và Fumio. Gặp khó khăn trong việc chạy deadline khi các trợ lý trước của anh ra mắt manga, anh ấy đã thuê một trợ lý mới thông qua biên tập viên của mình. Tuy nhiên, cuộc đời của anh có một bước ngoặt lớn sau khi găp người trợ lý xinh đẹp và bí ẩn này.</p>
+        `
+    },
+
+    "27": {
+        id: "27",
+        title: "Thiên Hà Cạnh Bên - Tập 6",
+        supplier: "NXB Trẻ",
+        category: "Manga - Comic",
+        author: "Gido Amagakure",
+        publisher: "Trẻ",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 45000,
+        oldPrice: 50000,
+        discount: 10,
+        mainImage: "../img/book/27.jpg",
+        thumbnails: [
+            "../img/book/27.jpg",
+            "../img/book/27-s.jpg",
+        ],
+        sku: "8934974205357",
+        releaseDate: "2025-01-03",
+        year: 2025,
+        pages: 192,
+        description: `
+            <h1>Thiên Hà Cạnh Bên - Tập 5</h1>
+            <p>Sau cái chết của cha mình, Kuga Ichirou, một hoạ sĩ truyện tranh thiếu nữ mới ra trường, phải một mình chăm sóc hai đứa em nhỏ của mình, Machi và Fumio. Gặp khó khăn trong việc chạy deadline khi các trợ lý trước của anh ra mắt manga, anh ấy đã thuê một trợ lý mới thông qua biên tập viên của mình. Tuy nhiên, cuộc đời của anh có một bước ngoặt lớn sau khi găp người trợ lý xinh đẹp và bí ẩn này.</p>
+        `
+    },
+    
+    "28": {
+        id: "28",
+        title: "Arya Bàn Bên Thỉnh Thoảng Lại Trêu Ghẹo Tôi Bằng Tiếng Nga - Tập 7",
+        supplier: "NXB Kim Đồng",
+        category: "Manga - Comic",
+        author: "Sunsunsun, Momoco",
+        publisher: "Kim Đồng",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 85500,
+        oldPrice: 95000,
+        discount: 10,
+        mainImage: "../img/book/28.jpg",
+        thumbnails: [
+            "../img/book/28.jpg",
+            "../img/book/28-s.jpg",
+        ],
+        sku: "9786042243575",
+        releaseDate: "2025-01-03",
+        year: 2025,
+        pages: 408,
+        description: `
+            <h1>Arya Bàn Bên Thỉnh Thoảng Lại Trêu Ghẹo Tôi Bằng Tiếng Nga - Tập 7</h1>
+            <p>“И наменятоже обрати внимание”</p>
+            <p>Lễ hội trường đầy biến động đã kết thúc với nhiều điều thuận lợi dành cho Arya, nhờ vào nỗ lực của Masachika (mà cậu coi là lịch sử đen tối!?).</p>
+            <p>(Hãy nhìn mình nhiều hơn, và chỉ nhìn mỗi mình thôi. Hãy là cộng sự duy nhất của mình.)</p>
+            <p>Với những cảm xúc ngày một tăng dần, Arya và Masachika bắt đầu tiến đến sự kiện tiếp theo - hội thao! Giữa lúc đó, Masachika lại có dịp đến gần hơn với mối tình đầu trong một sự kiện nọ.</p>
+            <p>“Chị muốn em đối mặt với cảm xúc của bé Arya. Nhưng...”</p>
+            <p>Cảm xúc thật sự của Masha bỗng chốc được phơi bày. Liệu trái tim của Masachika có rung động trước tình cảm bất ngờ của cô!?</p>
+            <p>Phần truyện về hội thao cùng cô nàng nữ sinh trung học gốc Nga xinh đẹp và cực kì nổi tiếng xin được bắt đầu!</p>
+            `
+    },
+    
+    "29": {
+        id: "29",
+        title: "Arya Bàn Bên Thỉnh Thoảng Lại Trêu Ghẹo Tôi Bằng Tiếng Nga - Tập 6 ",
+        supplier: "Nhà Xuất Bản Kim Đồng",
+        category: "Manga - Comic",
+        author: "Sunsunsun, Momoco",
+        publisher: "Kim Đồng",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 85500,
+        oldPrice: 95000,
+        discount: 10,
+        mainImage: "../img/book/29.jpg",
+        thumbnails: [
+            "../img/book/29.jpg",
+            "../img/book/29-s.jpg",
+        ],
+        sku: "8935352620151",
+        releaseDate: "2024-12-11",
+        year: 2024,
+        pages: 410,
+        description: `
+            <h1>Arya Bàn Bên Thỉnh Thoảng Lại Trêu Ghẹo Tôi Bằng Tiếng Nga - Tập 6</h1>
+            <p>“И наменятоже обрати внимание”</p>
+            <p>Uy tín của Hội học sinh đang bị đe dọa trong lễ hội trường của Học viện Seirei. Sau khi kết thúc ngày đầu tiên với chiến thắng đầy kịch tính của Arya, lễ hội Shuurei bắt đầu bước vào ngày hội cuối cùng!</p>
+            <p>Tình yêu, cosplay, biểu diễn ban nhạc… ngay khi sự phấn khích lên đến đỉnh điểm, một sự cố lớn đã xảy ra…!? Khi nghĩ rằng lễ hội trường sắp bị phá hủy bởi âm mưu của người nào đó, Masachika đã quyết định hành động một mình để chấm dứt tình trạng hỗn loạn.</p>
+            <p>“Hãy tin tưởng và đợi tôi. Nhất định tôi sẽ để các cậu được lên sân khấu.”</p>
+            <p>“Ừ, tôi tin cậu.”</p>
+            <p>Liệu Masachika có thể đối phó với những âm mưu diễn ra trong lễ hội trường và giúp Arya được tỏa sáng trên sân khấu?</p>
+            <p>Đây là Tập 6 của bộ truyện thanh xuân lãng mạn và hài hước về cô nàng nữ sinh trung học gốc Nga xinh đẹp thích che giấu sự ngọt ngào của mình sau những lời trêu ghẹo!</p>
+                    `
+    },
+
+    "30": {
+        id: "30",
+        title: "Arya Bàn Bên Thỉnh Thoảng Lại Trêu Ghẹo Tôi Bằng Tiếng Nga - Tập 5 ",
+        supplier: "Nhà Xuất Bản Kim Đồng",
+        category: "Manga - Comic",
+        author: "Sunsunsun, Momoco",
+        publisher: "Kim Đồng",
+        binding: "Bìa Mềm",
+        reviewCount: 0,
+        soldCount: 0,
+        currentPrice: 85500,
+        oldPrice: 95000,
+        discount: 10,
+        mainImage: "../img/book/30.jpg",
+        thumbnails: [
+            "../img/book/30.jpg",
+            "../img/book/30-s.jpg",
+        ],
+        sku: "8935352614082",
+        releaseDate: "2024-08-14",
+        year: 2024,
+        pages: 384,
+        description: `
+            <h1>Arya Bàn Bên Thỉnh Thoảng Lại Trêu Ghẹo Tôi Bằng Tiếng Nga - Tập 6</h1>
+            <p>“И наменятоже обрати внимание”</p>
+            <p>Uy tín của Hội học sinh đang bị đe dọa trong lễ hội trường của Học viện Seirei. Sau khi kết thúc ngày đầu tiên với chiến thắng đầy kịch tính của Arya, lễ hội Shuurei bắt đầu bước vào ngày hội cuối cùng!</p>
+            <p>Tình yêu, cosplay, biểu diễn ban nhạc… ngay khi sự phấn khích lên đến đỉnh điểm, một sự cố lớn đã xảy ra…!? Khi nghĩ rằng lễ hội trường sắp bị phá hủy bởi âm mưu của người nào đó, Masachika đã quyết định hành động một mình để chấm dứt tình trạng hỗn loạn.</p>
+            <p>“Hãy tin tưởng và đợi tôi. Nhất định tôi sẽ để các cậu được lên sân khấu.”</p>
+            <p>“Ừ, tôi tin cậu.”</p>
+            <p>Liệu Masachika có thể đối phó với những âm mưu diễn ra trong lễ hội trường và giúp Arya được tỏa sáng trên sân khấu?</p>
+            <p>Đây là Tập 6 của bộ truyện thanh xuân lãng mạn và hài hước về cô nàng nữ sinh trung học gốc Nga xinh đẹp thích che giấu sự ngọt ngào của mình sau những lời trêu ghẹo!</p>
+                    `
+    },
+    
+
 };
 

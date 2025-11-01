@@ -77,12 +77,19 @@ body {
     align-items: center;
     gap: 20px; /* Khoảng cách giữa các phần tử chính */
 }
-
+.imglogo {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 50% ;
+    margin-right: 10px;
+}
 .logo {
     font-size: 28px; /* Lớn hơn một chút cho logo */
     font-weight: 900; /* Đậm hơn */
     color: var(--primary-blue);
     text-decoration: none;
+    margin-left: -30px;
     flex-shrink: 0; /* Không co lại */
 }
 /* --- MEGA MENU STYLES --- */
@@ -343,7 +350,9 @@ body {
 
 .book-card img {
     max-width: 100%;
-    height: auto;
+    width: 100%;         /* Đảm bảo ảnh luôn rộng 100% */
+    height: 300px;       /* THAY ĐỔI: Đặt chiều cao cố định (bạn có thể đổi số 300px) */
+    object-fit: contain; /* THÊM MỚI: Giữ tỷ lệ, không làm méo ảnh */
     display: block;
     margin-bottom: 15px;
 }
@@ -1606,4 +1615,62 @@ body {
     width: 100%;
     text-align: center;
     margin-top: auto; /* Quan trọng: Đẩy nút xuống dưới cùng */
+}
+.manga {
+        display: flex;
+    flex-direction: column; /* Xếp icon trên, chữ dưới */
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0; /* Ngăn các mục bị co lại */
+    width: 60px; /* Đặt chiều rộng cố định cho mỗi mục */
+    text-align: center;
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding-bottom: 40px; /* Thêm padding-bottom để tách biệt khỏi footer */
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    background-color: var(--white);
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 15px;
+    min-width: 40px; /* Đảm bảo các nút số có chiều rộng tối thiểu */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+.pagination-btn.active {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+.pagination-btn:disabled {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+}
+.pagination-btn:disabled:hover {
+    background-color: #e0e0e0;
+    color: #aaa;
+}
+
+.pagination-ellipsis {
+    color: var(--dark-gray);
+    padding: 10px 5px;
+    font-weight: 700;
 }

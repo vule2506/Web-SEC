@@ -15,25 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return price.toLocaleString('vi-VN') + ' đ';
     };
 
-    const getElement = (id) => {
-        const element = document.getElementById(id);
-        if (!element) {
-            console.warn(`Không tìm thấy phần tử với ID: ${id}`);
-        }
-        return element;
-    };
-    
-    const updateText = (id, text) => {
-        const el = getElement(id);
-        if (el) el.textContent = text;
-    };
-
-    const updateMultipleText = (className, text) => {
-        const elements = document.querySelectorAll(className);
-        elements.forEach(el => el.textContent = text);
-    };
-
-
     /**
      * CHỨC NĂNG 1: TẢI TRANG CHI TIẾT SẢN PHẨM (product-detail.html)
      */
@@ -42,17 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loadProductDetail();
     }
 
-    /**
-     * CHỨC NĂNG 2: TẢI LƯỚI SẢN PHẨM (index.html)
-     * Đây là chức năng sẽ tải sách lên trang chủ
-     */
-    const productGrid = document.querySelector(".book-grid");
-    if (productGrid) {
-        loadProductGrid(productGrid);
-    }
-
-
-    // --- ĐỊNH NGHĨA CÁC HÀM ---
+    // --- ĐỊNH NGHĨA HÀM ---
 
     /**
      * Hàm chạy trên 'product-detail.html'
@@ -148,47 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
         updateHtmlByQuery(".product-description", `<h2>Mô tả sản phẩm</h2>${product.description}`);
     }
 
-
-    /**
-     * [ĐÃ SỬA] Hàm này chạy trên 'index.html'.
-     * Đã thêm lại các biến mainImageSrc, thumbImageSrc
-     * và cấu trúc HTML mới để căn chỉnh thẻ.
-     */
-    function loadProductGrid(gridContainer) {
-        gridContainer.innerHTML = ""; 
-
-        for (const productId in productDatabase) {
-            const product = productDatabase[productId];
-            
-            // [SỬA LỖI] Đây là 2 biến bị thiếu mà tôi quên không bảo bạn thêm vào
-            const thumbImageSrc = product.thumbnails[0].replace('../', 'img/book/');
-
-            // Cấu trúc HTML mới để căn chỉnh
-            const cardHTML = `
-                <div class="book-card">
-                    <a href="html/product-detail.html?id=${product.id}" class="book-card-image-link">
-                        <img src="${product.mainImage}" alt="${product.title}">
-                    </a>
-                    
-                    <div class="book-card-details">
-                        <h3>
-                            <a href="html/product-detail.html?id=${product.id}">${product.title}</a>
-                        </h3>
-                        <p class="author">${product.author}</p>
-                        <p class="price">${formatPrice(product.currentPrice)}</p>
-
-                        <a href="#" class="btn btn-secondary add-to-cart-btn" 
-                            data-id="${product.id}" 
-                            data-name="${product.title}" 
-                            data-price="${product.currentPrice}" 
-                            data-image="${thumbImageSrc}">
-                            Thêm vào giỏ
-                        </a>
-                    </div>
-                </div>
-            `;
-            gridContainer.innerHTML += cardHTML;
-        }
-    }
-
+    // ĐÃ XÓA LOGIC loadProductGrid() KHỎI ĐÂY
+    // script.js sẽ xử lý việc này
 });
