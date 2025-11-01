@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ======================================================
-    // 1. LOGIC SLIDER (Giữ nguyên)
+    // 1. LOGIC SLIDER
     // ======================================================
     let slideIndex = 0;
     let slideInterval;
@@ -44,18 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ======================================================
-    // 2. LOGIC THÊM VÀO GIỎ (DÙNG EVENT DELEGATION - ĐÃ SỬA LỖI)
+    // 2. LOGIC THÊM VÀO GIỎ (DÙNG EVENT DELEGATION)
     // ======================================================
-    // Lắng nghe sự kiện trên CHA (grid) thay vì từng nút
     const bookGridForCart = document.getElementById('main-book-grid');
 
     if (bookGridForCart) {
         bookGridForCart.addEventListener('click', (e) => {
-            // Kiểm tra xem mục được click có phải là nút "Thêm vào giỏ" không
             const button = e.target.closest('.add-to-cart-btn');
             
             if (button) {
-                e.preventDefault(); // Ngăn thẻ <a> tải lại trang
+                e.preventDefault(); 
                 
                 const product = {
                     id: button.dataset.id,
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     image: button.dataset.image
                 };
                 
-                // Gọi hàm toàn cục từ main.js (lúc này đã được tải)
                 if (window.addProductToCart) {
                     window.addProductToCart(product, 1);
                 } else {
@@ -75,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ======================================================
-    // 3. LOGIC LỌC VÀ RENDER SẢN PHẨM
+    // 3. LOGIC LỌC VÀ RENDER SẢN PHẨM (ĐÃ CẬP NHẬT)
     // ======================================================
     
     const bookGrid = document.getElementById('main-book-grid');
@@ -84,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formatter = new Intl.NumberFormat('vi-VN'); // Định dạng tiền tệ
 
     /**
-     * Hàm "vẽ" sản phẩm ra grid
+     * Hàm "vẽ" sản phẩm ra grid (ĐÃ CẬP NHẬT HTML)
      */
     function renderProducts(productsToRender) {
         if (!bookGrid) return;
@@ -96,28 +93,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Kiểm tra xem productDatabase đã tải chưa
         if (typeof productDatabase === 'undefined') {
              bookGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Lỗi: Không tải được dữ liệu sản phẩm.</p>';
              return;
         }
         
         productsToRender.forEach(product => {
+            // Sửa đường dẫn cho đúng
+            const thumbImageSrc = product.thumbnails[0].replace('../', 'img/book');
+
+            // Cấu trúc HTML mới để căn chỉnh
             const productHTML = `
                 <div class="book-card">
-                    <a href="html/product-detail.html?id=${product.id}">
+                    <a href="html/product-detail.html?id=${product.id}" class="book-card-image-link">
                         <img src="${product.mainImage}" alt="${product.title}">
-                        <h3>${product.title}</h3>
+                    </a>
+                    
+                    <div class="book-card-details">
+                        <h3>
+                            <a href="html/product-detail.html?id=${product.id}">${product.title}</a>
+                        </h3>
                         <p class="author">${product.author || 'Không rõ tác giả'}</p>
                         <p class="price">${formatter.format(product.currentPrice)}đ</p>
-                    </a>
-                    <a href="#" class="btn btn-secondary add-to-cart-btn" 
-                        data-id="${product.id}" 
-                        data-name="${product.title}" 
-                        data-price="${product.currentPrice}" 
-                        data-image="${product.thumbnails[0]}">
-                        Thêm vào giỏ
-                    </a>
+
+                        <a href="#" class="btn btn-secondary add-to-cart-btn" 
+                            data-id="${product.id}" 
+                            data-name="${product.title}" 
+                            data-price="${product.currentPrice}" 
+                            data-image="${thumbImageSrc}">
+                            Thêm vào giỏ
+                        </a>
+                    </div>
                 </div>
             `;
             bookGrid.insertAdjacentHTML('beforeend', productHTML);
@@ -128,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * Hàm lọc sản phẩm theo thể loại
      */
     function filterProducts(category, categoryName) {
-        // Chỉ chạy nếu productDatabase đã tồn tại
         if (typeof productDatabase === 'undefined') return; 
 
         const allProducts = Object.values(productDatabase);
@@ -150,20 +155,16 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault(); 
             const categoryKey = link.dataset.category;
-            const categoryDisplayName = link.textContent; 
+            const categoryDisplayName = link.querySelector('.category-name').textContent; // Lấy text từ class .category-name
             filterProducts(categoryKey, categoryDisplayName);
         });
     });
 
-    // Tải tất cả sản phẩm lên lần đầu tiên
-    // Đảm bảo productDatabase đã tải
-    if (typeof productDatabase !== 'undefined') {
-        renderProducts(Object.values(productDatabase));
-        if (featuredTitle) featuredTitle.textContent = 'Sách Nổi Bật Tuần Này';
-    } else {
-        console.error('Lỗi: database.js chưa tải kịp.');
-        if (bookGrid) bookGrid.innerHTML = '<p>Đang tải dữ liệu sản phẩm...</p>';
-    }
+    // [ĐÃ XÓA] Tải tất cả sản phẩm lên lần đầu tiên
+    // Chúng ta KHÔNG cần dòng này nữa, vì `product-loader.js` đã làm việc này.
+    // if (typeof productDatabase !== 'undefined') {
+    //     renderProducts(Object.values(productDatabase));
+    // }
 
 
     // ======================================================
@@ -187,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return product.title.toLowerCase().includes(query);
         });
         
-        renderProducts(searchResults);
+        renderProducts(searchResults); // Dùng hàm render đã sửa
         
         if (featuredTitle) {
             if (query) {
@@ -224,9 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (suggestions.length > 0) {
             suggestions.forEach(product => {
+                const thumbImageSrc = product.thumbnails[0].replace('../', 'img/'); // Sửa đường dẫn ảnh
                 const suggestionHTML = `
                     <a href="html/product-detail.html?id=${product.id}" class="suggestion-item">
-                        <img src="${product.thumbnails[0]}" alt="${product.title}">
+                        <img src="${thumbImageSrc}" alt="${product.title}">
                         <div class="suggestion-item-info">
                             <span class="title">${product.title}</span>
                             <span class="price">${formatter.format(product.currentPrice)}đ</span>
@@ -242,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Gắn sự kiện cho nút bấm
     if (searchButton) {
         searchButton.addEventListener('click', (e) => {
             e.preventDefault(); 
@@ -251,19 +252,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (searchInput) {
-        // Gắn sự kiện cho phím "Enter"
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault(); 
                 performSearch();
             }
         });
-
-        // Gắn sự kiện "input" (khi gõ)
         searchInput.addEventListener('input', showSuggestions);
     }
 
-    // Ẩn gợi ý khi click ra ngoài
     document.addEventListener('click', (e) => {
         if (!searchSuggestions || !searchInput) return;
         if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {

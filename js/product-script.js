@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ======================================================
+    //======================================================
     // 1. LOGIC THƯ VIỆN ẢNH (Giữ nguyên)
     // ======================================================
     const mainImage = document.getElementById('main-product-image');
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
     // ======================================================
     // 2. LOGIC BỘ CHỌN SỐ LƯỢNG (MỚI)
     // ======================================================
